@@ -1,0 +1,32 @@
+{
+  "name": "meta-frameworks-tutorials",
+  "version": "1.0.0",
+  "description": "Repositorio para hacer los cursos impartidos por los meta frameworks de React (Next, Remix, Gatsby, Expo)",
+  "workspaces": [
+    "projects/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "sui-mono commit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chicho69-cesar/react-meta-frameworks.git"
+  },
+  "keywords": [
+    "React",
+    "NextJS",
+    "Remix",
+    "Gatsby",
+    "Expo"
+  ],
+  "author": "Cesar Villalobos Olmos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chicho69-cesar/react-meta-frameworks/issues"
+  },
+  "homepage": "https://github.com/chicho69-cesar/react-meta-frameworks#readme",
+  "dependencies": {
+    "@s-ui/mono": "2.36.0"
+  }
+}
