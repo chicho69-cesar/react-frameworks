@@ -1,0 +1,22 @@
+{
+  "name": "next-blog",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "author": "Cesar Villalobos Olmos",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "10.4.15",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.16"
+  }
+}
