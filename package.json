@@ -1,6 +1,7 @@
 {
   "name": "meta-frameworks-tutorials",
   "version": "1.0.0",
+  "private": true,
   "description": "Repositorio para hacer los cursos impartidos por los meta frameworks de React (Next, Remix, Gatsby, Expo)",
   "workspaces": [
     "projects/*"
