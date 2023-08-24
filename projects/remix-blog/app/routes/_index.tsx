@@ -1,41 +1,26 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import type { V2_MetaFunction } from '@remix-run/node'
+import { Link } from '@remix-run/react'
 
 export const meta: V2_MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+    { title: 'New Remix App' },
+    { name: 'description', content: 'Welcome to Remix!' },
+  ]
+}
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className='font-[system-ui] leading-4'>
+      <div className='mx-auto mt-16 max-w-7xl text-center'>
+        <h1 className='text-3xl font-bold text-slate-700'>Welcome to Remix</h1>
+        
+        <Link
+          to='/posts'
+          className='text-xl text-blue-600 mt-8 underline'
+        >
+          Blog posts
+        </Link>
+      </div>
     </div>
-  );
+  )
 }
