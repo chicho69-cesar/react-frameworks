@@ -8,7 +8,7 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
-export default function Index() {
+export default function HomePage() {
   return (
     <div className='font-[system-ui] leading-4'>
       <div className='mx-auto mt-16 max-w-7xl text-center'>

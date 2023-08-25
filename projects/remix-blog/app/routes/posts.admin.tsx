@@ -1,4 +1,4 @@
-import { json } from '@remix-run/node'
+import { type V2_MetaFunction, json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 
 import { getPosts } from '~/models/post.server'
@@ -7,7 +7,13 @@ export const loader = async () => {
   return json({ posts: await getPosts() })
 }
 
-export default function AdminPage() {
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: 'Admin page' }
+  ]
+}
+
+export default function PostsAdminPage() {
   const { posts } = useLoaderData<typeof loader>()
 
   return (

@@ -1,12 +1,12 @@
 import { useEffect, useId, useState } from 'react'
 import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/react'
 import { json, redirect } from '@remix-run/node'
-import type { LoaderArgs, ActionArgs } from '@remix-run/node'
+import type { LoaderFunction, ActionFunction, V2_MetaFunction } from '@remix-run/node'
 import invariant from 'tiny-invariant'
 
 import { type Post, deletePost, getPost, updatePost } from '~/models/post.server'
 
-export const loader = async ({ params }: LoaderArgs) => {
+export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, 'Slug is required')
 
   const post = await getPost(params.slug)
@@ -15,7 +15,7 @@ export const loader = async ({ params }: LoaderArgs) => {
   return json({ post })
 }
 
-export const action = async ({ params, request }: ActionArgs) => {
+export const action: ActionFunction = async ({ params, request }) => {
   invariant(params.slug, 'Slug is required')
 
   const formData = await request.formData()
@@ -59,9 +59,15 @@ export const action = async ({ params, request }: ActionArgs) => {
     )
 }
 
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: 'Admin page' }
+  ]
+}
+
 const inputClassName = 'w-full rounded border border-gray-500 px-2 py-1 text-lg outline-none'
 
-export default function PostAdminSlugPage() {
+export default function PostsAdminSlugPage() {
   const { post } = useLoaderData<typeof loader>()
   const errors = useActionData<typeof action>()
   const navigation = useNavigation()

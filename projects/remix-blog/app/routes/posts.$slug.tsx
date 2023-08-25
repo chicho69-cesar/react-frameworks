@@ -1,4 +1,4 @@
-import { json, type LoaderArgs } from '@remix-run/node'
+import { json, type LoaderArgs, type V2_MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
 import invariant from 'tiny-invariant'
@@ -17,7 +17,13 @@ export const loader = async ({ params }: LoaderArgs) => {
   return json({ post, html })
 }
 
-export default function PostSlugPage() {
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: 'Post' },
+  ]
+}
+
+export default function PostsSlugPage() {
   const { post, html } = useLoaderData<typeof loader>()
 
   return (

@@ -1,6 +1,6 @@
 import { useId } from 'react'
 import { Form, useActionData, useNavigation } from '@remix-run/react'
-import { json, redirect, type ActionArgs } from '@remix-run/node'
+import { json, redirect, type ActionArgs, type V2_MetaFunction } from '@remix-run/node'
 import invariant from 'tiny-invariant'
 
 import { createPost } from '~/models/post.server'
@@ -39,9 +39,15 @@ export const action = async ({ request }: ActionArgs) => {
   return redirect('/posts/admin')
 }
 
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: 'Post admin page' }
+  ]
+}
+
 const inputClassName = 'w-full rounded border border-gray-500 px-2 py-1 text-lg outline-none'
 
-export default function NewPostPage() {
+export default function PostsAdminNewPage() {
   const errors = useActionData<typeof action>()
   const navigation = useNavigation()
   const markdownId = useId()
