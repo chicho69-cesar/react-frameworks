@@ -1,4 +1,4 @@
-type Post = {
+export type Post = {
   slug: string
   title: string
   markdown: string
@@ -59,4 +59,28 @@ export async function createPost(
   posts.push(newPost)
 
   return newPost
+}
+
+export async function updatePost(
+  slugToEdit: string,
+  title: string,
+  slug: string,
+  markdown: string
+): Promise<Post | null> {
+  const postIndex = posts.findIndex((post) => post.slug === slugToEdit)
+  if (postIndex === -1) return null
+
+  const updatedPost = { slug, title, markdown }
+  // posts[postIndex] = updatedPost
+  posts.splice(postIndex, 1, updatedPost)
+
+  return updatedPost
+}
+
+export async function deletePost(slug: string): Promise<boolean> {
+  const postIndex = posts.findIndex((post) => post.slug === slug)
+  if (postIndex === -1) return false
+
+  posts.splice(postIndex, 1)
+  return true
 }
