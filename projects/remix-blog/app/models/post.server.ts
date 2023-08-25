@@ -48,3 +48,15 @@ export async function getPosts(): Promise<Post[]> {
 export async function getPost(slug: string): Promise<Post | undefined> {
   return posts.find((post) => post.slug === slug)
 }
+
+export async function createPost(
+  title: string,
+  slug: string,
+  markdown: string
+): Promise<Post> {
+  // const slug = title.toLowerCase().replace(/\s+/g, "-")
+  const newPost = { slug, title, markdown }
+  posts.push(newPost)
+
+  return newPost
+}
