@@ -1,7 +1,9 @@
+import { json } from '@remix-run/node'
 import { type LinksFunction } from '@remix-run/node'
-import { Link, Outlet } from '@remix-run/react'
+import { Link, Outlet, useLoaderData } from '@remix-run/react'
 
 import stylesUrl from '~/styles/jokes.css'
+import { db } from '~/utils/db.server'
 
 export const links: LinksFunction = () => {
   return [
@@ -9,7 +11,19 @@ export const links: LinksFunction = () => {
   ]
 }
 
+export const loader = async () => {
+  return json({
+    jokeListItems: await db.joke.findMany({
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, name: true },
+      take: 5,
+    }),
+  })
+}
+
 export default function JokesPage() {
+  const data = useLoaderData<typeof loader>()
+
   return (
     <div className='jokes-layout'>
       <header className='jokes-header'>
@@ -35,9 +49,11 @@ export default function JokesPage() {
             <p>Here are a few more jokes to check out:</p>
             
             <ul>
-              <li>
-                <Link to='some-joke-id'>Hippo</Link>
-              </li>
+              {data.jokeListItems.map(({ id, name }) => (
+                <li key={id}>
+                  <Link to={id}>{name}</Link>
+                </li>
+              ))}
             </ul>
 
             <Link to='new' className='button'>
