@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node'
-import { Link, useLoaderData } from '@remix-run/react'
+import { Link, isRouteErrorResponse, useLoaderData, useRouteError } from '@remix-run/react'
 
 import { db } from '~/utils/db.server'
 
@@ -12,10 +12,25 @@ export const loader = async () => {
     take: 1,
   })
 
+  if (!randomJoke) {
+    throw new Response('No random joke found', {
+      status: 404,
+    })
+  }
+
   return json({ joke: randomJoke })
 }
 
 export function ErrorBoundary() {
+  const error = useRouteError()
+
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    <div className='error-container'>
+      <p>There are no jokes to display.</p>
+      <Link to='new'>Add your own</Link>
+    </div>
+  }
+
   return (
     <div className='error-container'>
       I did a whoopsies.
@@ -30,6 +45,7 @@ export default function JokesIndexPage() {
     <div>
       <p>Here is a random joke: </p>
       <p>{ joke.content }</p>
+
       <Link to={joke.id}>
         "{joke.name}" Permalink
       </Link>
