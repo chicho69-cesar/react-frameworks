@@ -1,7 +1,8 @@
 import type { ActionArgs, LoaderArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import { Form, Link, isRouteErrorResponse, useActionData, useRouteError } from '@remix-run/react'
+import { Form, Link, isRouteErrorResponse, useActionData, useNavigation, useRouteError } from '@remix-run/react'
 
+import { Joke } from '~/components/joke'
 import { db } from '~/utils/db.server'
 import { badRequest } from '~/utils/request.server'
 import { getUserId, requireUserId } from '~/auth/session.server'
@@ -80,6 +81,25 @@ export function ErrorBoundary() {
 
 export default function JokesNewPage() {
   const actionData = useActionData<typeof action>()
+  const navigation = useNavigation()
+
+  if (navigation.formData) {
+    const content = navigation.formData.get('content') as (string | null)
+    const name = navigation.formData.get('name') as (string | null)
+
+    if (
+      typeof content !== 'string' &&
+      typeof name !== 'string' &&
+      !validateJokeContent(content) &&
+      !validateJokeName(name)
+    ) {
+      return <Joke
+        canDelete={false}
+        isOwner
+        joke={{ name: name!, content: content! }}
+      />
+    }
+  }
 
   return (
     <div>

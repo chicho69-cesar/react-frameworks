@@ -1,7 +1,8 @@
 import type { ActionArgs, LoaderArgs, V2_MetaFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import { Form, Link, isRouteErrorResponse, useLoaderData, useParams, useRouteError } from '@remix-run/react'
+import { isRouteErrorResponse, useLoaderData, useParams, useRouteError } from '@remix-run/react'
 
+import { Joke } from '~/components/joke'
 import { db } from '~/utils/db.server'
 import { getUserId, requireUserId } from '~/auth/session.server'
 
@@ -118,24 +119,6 @@ export default function JokesJokeIdPage() {
   const { isOwner, joke } = useLoaderData<typeof loader>()
 
   return (
-    <div>
-      <p>Here is your hilarious joke: </p>
-      <p>{joke.content}</p>
-
-      <Link to='.'>"{joke.name}" Permalink</Link>
-
-      {isOwner && (
-        <Form method='post'>
-          <button
-            type='submit'
-            className='button'
-            name='intent'
-            value='delete'
-          >
-            Delete
-          </button>
-        </Form>
-      )}
-    </div>
+    <Joke isOwner={isOwner} joke={joke} />
   )
 }
