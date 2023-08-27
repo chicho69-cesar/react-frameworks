@@ -5,7 +5,7 @@ import stylesUrl from '~/styles/login.css'
 import { db } from '~/utils/db.server'
 import { badRequest } from '~/utils/request.server'
 import { validateUsername, validatePassword, validateUrl } from '~/validations/users'
-import { login, createUserSession } from '~/auth/session.server'
+import { createUserSession, login, register } from '~/auth/session.server'
 
 export const links: LinksFunction = () => {
   return [
@@ -77,11 +77,17 @@ export const action = async ({ request }: ActionArgs) => {
         })
       }
 
-      return badRequest({
-        fieldErrors: null,
-        fields,
-        formError: 'Not implemented'
-      })
+      const user = await register({ username, password })
+
+      if (!user) {
+        return badRequest({
+          fieldErrors: null,
+          fields,
+          formError: 'Something went wrong trying to create a new user.'
+        })
+      }
+
+      return createUserSession(user.id, redirectTo)
     }
 
     default: {

@@ -1,9 +1,10 @@
 import { json } from '@remix-run/node'
-import { type LinksFunction } from '@remix-run/node'
+import type { LinksFunction, LoaderArgs } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 
 import stylesUrl from '~/styles/jokes.css'
 import { db } from '~/utils/db.server'
+import { getUser } from '~/auth/session.server'
 
 export const links: LinksFunction = () => {
   return [
@@ -11,14 +12,16 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export const loader = async () => {
-  return json({
-    jokeListItems: await db.joke.findMany({
-      orderBy: { createdAt: 'desc' },
-      select: { id: true, name: true },
-      take: 5,
-    }),
+export const loader = async ({ request }: LoaderArgs) => {
+  const jokeListItems = await db.joke.findMany({
+    orderBy: { createdAt: 'desc' },
+    select: { id: true, name: true },
+    take: 5,
   })
+
+  const user = await getUser(request)
+  
+  return json({ jokeListItems, user })
 }
 
 export default function JokesPage() {
@@ -38,6 +41,20 @@ export default function JokesPage() {
               <span className='logo-medium'>J🤪KES</span>
             </Link>
           </h1>
+
+          {data.user ? (
+            <div className='user-info'>
+              <span>{`Hi ${data.user.username}`}</span>
+
+              <form action='/logout' method='post'>
+                <button type='submit' className='button'>
+                  Logout
+                </button>
+              </form>
+            </div>
+          ) : (
+            <Link to='/login'>Login</Link>
+          )}
         </div>
       </header>
 

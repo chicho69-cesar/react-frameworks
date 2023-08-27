@@ -3,12 +3,12 @@ import bcrypt from 'bcryptjs'
 
 import { db } from '~/utils/db.server'
 
-type LoginForm = {
+type UserData = {
   username: string
   password: string
 }
 
-export async function login({ username, password }: LoginForm) {
+export async function login({ username, password }: UserData) {
   const user = await db.user.findUnique({
     where: { username },
   })
@@ -22,6 +22,15 @@ export async function login({ username, password }: LoginForm) {
   if (!isCorrectPassword) {
     return null
   }
+
+  return { id: user.id, username }
+}
+
+export async function register({ username, password }: UserData) {
+  const passwordHash = await bcrypt.hash(password, 10)
+  const user = await db.user.create({ 
+    data: { username, passwordHash } 
+  })
 
   return { id: user.id, username }
 }
@@ -76,6 +85,35 @@ export async function requireUserId(
   }
 
   return userId
+}
+
+export async function getUser(request: Request) {
+  const userId = await getUserId(request)
+
+  if (typeof userId !== 'string') {
+    return null
+  }
+
+  const user = await db.user.findUnique({
+    select: { id: true, username: true },
+    where: { id: userId },
+  })
+
+  if (!user) {
+    throw await logout(request)
+  }
+
+  return user
+}
+
+export async function logout(request: Request) {
+  const session = await getUserSession(request)
+
+  return redirect('/login', {
+    headers: {
+      'Set-Cookie': await storage.destroySession(session),
+    },
+  })
 }
 
 export async function createUserSession(
