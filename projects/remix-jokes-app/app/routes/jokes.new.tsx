@@ -4,9 +4,11 @@ import { useActionData } from '@remix-run/react'
 
 import { db } from '~/utils/db.server'
 import { badRequest } from '~/utils/request.server'
-import { validateJokeName, validateJokeContent } from '~/validations/jokes.server'
+import { requireUserId } from '~/auth/session.server'
+import { validateJokeName, validateJokeContent } from '~/validations/jokes'
 
 export const action = async ({ request }: ActionArgs) => {
+  const userId = await requireUserId(request)
   const formData = await request.formData()
 
   const name = formData.get('name')
@@ -38,7 +40,9 @@ export const action = async ({ request }: ActionArgs) => {
     })
   }
 
-  const joke = await db.joke.create({ data: fields })
+  const joke = await db.joke.create({ 
+    data: { ...fields, jokesterId: userId } 
+  })
 
   return redirect(`/jokes/${joke.id}`)
 }
