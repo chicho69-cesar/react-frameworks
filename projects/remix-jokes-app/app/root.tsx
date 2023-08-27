@@ -1,6 +1,13 @@
 import { type PropsWithChildren } from 'react'
-import { type LinksFunction } from '@remix-run/node'
-import { Links, LiveReload, Outlet, isRouteErrorResponse, useRouteError } from '@remix-run/react'
+import type { LinksFunction, V2_MetaFunction } from '@remix-run/node'
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  isRouteErrorResponse,
+  useRouteError
+} from '@remix-run/react'
 
 import globalStylesUrl from '~/styles/global.css'
 import globalMediumStylesUrl from '~/styles/global-medium.css'
@@ -25,19 +32,38 @@ export const links: LinksFunction = () => {
   ]
 }
 
+export const meta: V2_MetaFunction = () => {
+  const description = 'Learn Remix and laugh at the same time!'
+
+  return [
+    { name: 'description', content: description },
+    { name: 'twitter:description', content: description },
+    { title: 'Remix: So great, it\'s funny!' }
+  ]
+}
+
 function Document({
   children,
-  title = 'Remix: So great, it\'s funny!'
+  title,
 }: PropsWithChildren<{ title?: string }>) {
   return (
     <html lang='es'>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='keywords' content='Remix,Jokes,React,TypeScript' />
+        <meta name='twitter:image' content='https://remix-jokes.lol/social.png' />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:creator' content='@chicho69_cesar' />
+        <meta name='twitter:site' content='@chicho69_cesar' />
+        <meta name='twitter:title' content={'Remix: So great, it\'s funny!'} />
 
+        <Meta />
         <Links />
 
-        <title>{title}</title>
+        {title && (
+          <title>{title}</title>
+        )}
       </head>
 
       <body>
