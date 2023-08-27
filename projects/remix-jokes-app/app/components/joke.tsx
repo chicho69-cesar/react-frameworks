@@ -7,7 +7,7 @@ interface Props {
   joke: Pick<JokeType, 'content' | 'name'>
 }
 
-export function Joke({ canDelete, isOwner, joke }: Props) {
+export function Joke({ canDelete = true, isOwner, joke }: Props) {
   return (
     <div>
       <p>Here's your hilarious joke:</p>
