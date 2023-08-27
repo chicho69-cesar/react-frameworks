@@ -83,6 +83,14 @@ export default function JokesPage() {
           </div>
         </div>
       </main>
+
+      <footer className='jokes-footer'>
+        <div className='container'>
+          <Link reloadDocument to='/jokes.rss' target='_blank'>
+            RSS
+          </Link>
+        </div>
+      </footer>
     </div>
   )
 }

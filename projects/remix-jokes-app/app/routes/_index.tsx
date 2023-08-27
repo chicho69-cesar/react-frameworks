@@ -22,6 +22,12 @@ export default function HomePage() {
             <li>
               <Link to='jokes'>Read Jokes</Link>
             </li>
+
+            <li>
+              <Link reloadDocument to='/jokes.rss'>
+                RSS
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

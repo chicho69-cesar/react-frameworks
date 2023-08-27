@@ -5,6 +5,7 @@ import {
   LiveReload,
   Meta,
   Outlet,
+  Scripts,
   isRouteErrorResponse,
   useRouteError
 } from '@remix-run/react'
@@ -68,6 +69,8 @@ function Document({
 
       <body>
         {children}
+
+        <Scripts />
         <LiveReload /> {/* The <LiveReload /> component is useful during 
         development to auto-refresh our browser whenever we make a change. */}
       </body>
