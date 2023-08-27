@@ -1,6 +1,6 @@
 import type { ActionArgs, LoaderArgs, V2_MetaFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import { Link, isRouteErrorResponse, useLoaderData, useParams, useRouteError } from '@remix-run/react'
+import { Form, Link, isRouteErrorResponse, useLoaderData, useParams, useRouteError } from '@remix-run/react'
 
 import { db } from '~/utils/db.server'
 import { getUserId, requireUserId } from '~/auth/session.server'
@@ -125,7 +125,7 @@ export default function JokesJokeIdPage() {
       <Link to='.'>"{joke.name}" Permalink</Link>
 
       {isOwner && (
-        <form method='post'>
+        <Form method='post'>
           <button
             type='submit'
             className='button'
@@ -134,7 +134,7 @@ export default function JokesJokeIdPage() {
           >
             Delete
           </button>
-        </form>
+        </Form>
       )}
     </div>
   )

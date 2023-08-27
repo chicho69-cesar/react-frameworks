@@ -1,6 +1,6 @@
 import { json } from '@remix-run/node'
 import type { LinksFunction, LoaderArgs } from '@remix-run/node'
-import { Link, Outlet, useLoaderData } from '@remix-run/react'
+import { Form, Link, Outlet, useLoaderData } from '@remix-run/react'
 
 import stylesUrl from '~/styles/jokes.css'
 import { db } from '~/utils/db.server'
@@ -46,11 +46,11 @@ export default function JokesPage() {
             <div className='user-info'>
               <span>{`Hi ${data.user.username}`}</span>
 
-              <form action='/logout' method='post'>
+              <Form action='/logout' method='post'>
                 <button type='submit' className='button'>
                   Logout
                 </button>
-              </form>
+              </Form>
             </div>
           ) : (
             <Link to='/login'>Login</Link>
@@ -68,7 +68,7 @@ export default function JokesPage() {
             <ul>
               {data.jokeListItems.map(({ id, name }) => (
                 <li key={id}>
-                  <Link to={id}>{name}</Link>
+                  <Link prefetch='intent' to={id}>{name}</Link>
                 </li>
               ))}
             </ul>
