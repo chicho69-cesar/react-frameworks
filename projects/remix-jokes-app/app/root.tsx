@@ -1,5 +1,6 @@
+import { type PropsWithChildren } from 'react'
 import { type LinksFunction } from '@remix-run/node'
-import { Links, LiveReload, Outlet } from '@remix-run/react'
+import { Links, LiveReload, Outlet, useRouteError } from '@remix-run/react'
 
 import globalStylesUrl from '~/styles/global.css'
 import globalMediumStylesUrl from '~/styles/global-medium.css'
@@ -24,7 +25,10 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export default function App() {
+function Document({
+  children,
+  title = 'Remix: So great, it\'s funny!'
+}: PropsWithChildren<{ title?: string }>) {
   return (
     <html lang='es'>
       <head>
@@ -33,14 +37,40 @@ export default function App() {
 
         <Links />
 
-        <title>Remix: So great, it's funny!</title>
+        <title>{title}</title>
       </head>
 
       <body>
-        <Outlet />
+        {children}
         <LiveReload /> {/* The <LiveReload /> component is useful during 
         development to auto-refresh our browser whenever we make a change. */}
       </body>
     </html>
+  )
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError()
+
+  const errorMessage = 
+    error instanceof Error
+      ? error.message
+      : 'Something went wrong'
+
+  return (
+    <Document title='Uh-oh!'>
+      <div className='error-container'>
+        <h1>App Error</h1>
+        <pre>{errorMessage}</pre>
+      </div>
+    </Document>
+  )
+}
+
+export default function App() {
+  return (
+    <Document>
+      <Outlet />
+    </Document>
   )
 }

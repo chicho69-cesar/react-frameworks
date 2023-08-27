@@ -15,6 +15,14 @@ export const loader = async () => {
   return json({ joke: randomJoke })
 }
 
+export function ErrorBoundary() {
+  return (
+    <div className='error-container'>
+      I did a whoopsies.
+    </div>
+  )
+}
+
 export default function JokesIndexPage() {
   const { joke } = useLoaderData<typeof loader>()
 
