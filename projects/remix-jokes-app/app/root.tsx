@@ -70,7 +70,8 @@ function Document({
       <body>
         {children}
 
-        <Scripts />
+        <Scripts /> {/* Scripts es muy importante para que las rutas y las navegaciones
+        entre las rutas se haga sin hacer full refresh de la página. */}
         <LiveReload /> {/* The <LiveReload /> component is useful during 
         development to auto-refresh our browser whenever we make a change. */}
       </body>
