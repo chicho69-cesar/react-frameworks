@@ -30,9 +30,11 @@ export const action = async ({ request }: ActionArgs) => {
   invariant(typeof slug === 'string', 'slug must be a string')
   invariant(typeof markdown === 'string', 'markdown must be a string')
 
+  const slugToCreate = slug.toLowerCase().replace(/\s+/g, '-')
+
   await createPost(
     title, 
-    slug, 
+    slugToCreate, 
     markdown
   )
 

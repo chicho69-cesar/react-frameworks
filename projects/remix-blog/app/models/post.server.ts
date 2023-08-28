@@ -54,7 +54,6 @@ export async function createPost(
   slug: string,
   markdown: string
 ): Promise<Post> {
-  // const slug = title.toLowerCase().replace(/\s+/g, "-")
   const newPost = { slug, title, markdown }
   posts.push(newPost)
 
