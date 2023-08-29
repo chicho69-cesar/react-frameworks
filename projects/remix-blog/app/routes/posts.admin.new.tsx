@@ -47,7 +47,7 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
-const inputClassName = 'w-full rounded border border-gray-500 px-2 py-1 text-lg outline-none'
+const inputClassName = 'w-full rounded border border-gray-200 px-2 py-1 text-md text-gray-700 font-normal outline-none'
 
 export default function PostsAdminNewPage() {
   const errors = useActionData<typeof action>()
@@ -58,7 +58,7 @@ export default function PostsAdminNewPage() {
 
   return (
     <Form method='post'>
-      <p className='mb-3'>
+      <p className='mb-3 text-gray-500 font-bold'>
         <label>
           Post Title:{' '}
           {errors?.title ? (
@@ -68,13 +68,14 @@ export default function PostsAdminNewPage() {
           <input
             type='text'
             name='title'
+            placeholder='Titulo...'
             autoComplete='off'
             className={inputClassName}
           />
         </label>
       </p>
 
-      <p className='mb-3'>
+      <p className='mb-3 text-gray-500 font-bold'>
         <label>
           Post Slug:{' '}
           {errors?.slug ? (
@@ -84,13 +85,14 @@ export default function PostsAdminNewPage() {
           <input
             type='text'
             name='slug'
+            placeholder='Slug...'
             autoComplete='off'
             className={inputClassName}
           />
         </label>
       </p>
 
-      <p className='mb-3'>
+      <p className='mb-3 text-gray-500 font-bold'>
         <label htmlFor={markdownId}>
           Markdown:{' '}
           {errors?.markdown ? (
@@ -103,6 +105,7 @@ export default function PostsAdminNewPage() {
           name='markdown'
           id={markdownId}
           rows={12}
+          placeholder='Markdown...'
           autoComplete='off'
           className={`${inputClassName} font-mono`}
         />

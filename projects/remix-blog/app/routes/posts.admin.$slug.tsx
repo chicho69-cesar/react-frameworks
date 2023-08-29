@@ -65,7 +65,7 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
-const inputClassName = 'w-full rounded border border-gray-500 px-2 py-1 text-lg outline-none'
+const inputClassName = 'w-full rounded border border-gray-500 px-2 py-1 text-md text-gray-700 font-normal outline-none'
 
 export default function PostsAdminSlugPage() {
   const { post } = useLoaderData<typeof loader>()
@@ -91,7 +91,7 @@ export default function PostsAdminSlugPage() {
         {(errors as { message: string } | undefined)?.message}
       </p>
 
-      <p className='mb-3'>
+      <p className='mb-3 text-gray-500 font-bold'>
         <label>
           Post Title:{' '}
           {(errors as Post)?.title ? (
@@ -109,7 +109,7 @@ export default function PostsAdminSlugPage() {
         </label>
       </p>
 
-      <p className='mb-3'>
+      <p className='mb-3 text-gray-500 font-bold'>
         <label>
           Post Slug:{' '}
           {(errors as Post)?.slug ? (
@@ -127,7 +127,7 @@ export default function PostsAdminSlugPage() {
         </label>
       </p>
 
-      <p className='mb-3'>
+      <p className='mb-3 text-gray-500 font-bold'>
         <label htmlFor={markdownId}>
           Markdown:{' '}
           {(errors as Post)?.markdown ? (

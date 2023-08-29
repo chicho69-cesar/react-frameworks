@@ -28,7 +28,7 @@ export default function PostsSlugPage() {
 
   return (
     <main className='mx-auto max-w-4xl'>
-      <h1 className='my-6 border-b-2 text-center text-3xl'>
+      <h1 className='my-6 pb-3 border-b-2 text-center text-3xl'>
         Some Post: {post.title}
       </h1>
 
