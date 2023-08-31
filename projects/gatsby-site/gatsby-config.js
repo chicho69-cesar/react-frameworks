@@ -17,6 +17,8 @@ module.exports = {
           'jsx',
         ]
       }
-    }
+    },
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
   ],
 }
