@@ -2,10 +2,10 @@ import React from 'react'
 
 import Layout from '../components/Layout'
 
-function IndexPage() {
+function AboutPage() {
   return (
-    <Layout pageTitle='Home Page'>
-      <p>I'm making this by following the Gatsby Tutorial.</p>
+    <Layout pageTitle='About Page'>
+      <p>Hi there! I'm the proud creator of this site, which I built with Gatsby.</p>
     </Layout>
   )
 }
@@ -13,10 +13,10 @@ function IndexPage() {
 export function Head() {
   return (
     <>
-      <title>Home Page</title>
+      <title>About me</title>
       <link rel='icon' type='image/svg' href='/favicon.svg' />
     </>
   )
 }
 
-export default IndexPage
+export default AboutPage
