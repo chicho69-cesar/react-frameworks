@@ -25,6 +25,12 @@ export default function Layout({ children, pageTitle }) {
               About
             </Link>
           </li>
+
+          <li className={styles.navLinkItem}>
+            <Link to='/my-blog' className={styles.navLinkText}>
+              Blog
+            </Link>
+          </li>
         </ul>
       </nav>
 
