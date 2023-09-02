@@ -1,24 +1,16 @@
 import * as styles from './Layout.module.css'
 
 import React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
-const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
+import useSiteMetadata from '../hooks/use-site-metadata'
 
 export default function Layout({ children, pageTitle }) {
-  const data = useStaticQuery(query)
+  const { title } = useSiteMetadata()
 
   return (
     <div className={styles.container}>
-      <header className={styles.siteTitle}>{data.site.siteMetadata.title}</header>
+      <header className={styles.siteTitle}>{title}</header>
 
       <nav>
         <ul className={styles.navLinks}>
