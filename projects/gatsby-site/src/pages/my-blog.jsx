@@ -1,17 +1,41 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 
-function BlogPage() {
+export const query = graphql`
+  query {
+    allFile {
+      nodes {
+        name
+      }
+    }
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
+
+function BlogPage({ data }) {
   return (
     <Layout pageTitle='My Blog Posts'>
-      <p>My cool posts will go in here</p>
+      <ul>
+        {data.allFile.nodes.map((post) => (
+          <li key={post.name}>
+            {post.name}
+          </li>
+        ))}
+      </ul>
     </Layout>
   )
 }
 
-export function Head() {
+export function Head({ data }) {
+  console.log(data.site.siteMetadata.title)
+
   return (
     <>
       <Seo title='My Blog Posts' />
