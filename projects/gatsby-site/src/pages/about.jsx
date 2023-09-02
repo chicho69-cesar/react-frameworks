@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Layout from '../components/Layout'
+import Seo from '../components/Seo'
 
 function AboutPage() {
   return (
@@ -13,8 +14,7 @@ function AboutPage() {
 export function Head() {
   return (
     <>
-      <title>About me</title>
-      <link rel='icon' type='image/svg' href='/favicon.svg' />
+      <Seo title='About me' />
     </>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/Layout'
+import Seo from '../components/Seo'
 
 function IndexPage() {
   return (
@@ -24,8 +25,7 @@ function IndexPage() {
 export function Head() {
   return (
     <>
-      <title>Home Page</title>
-      <link rel='icon' type='image/svg' href='/favicon.svg' />
+      <Seo title='Home Page' />
     </>
   )
 }

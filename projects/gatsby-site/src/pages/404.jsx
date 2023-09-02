@@ -1,6 +1,8 @@
 import { Link } from 'gatsby'
 import * as React from 'react'
 
+import Seo from '../components/Seo'
+
 /**
  * @typedef {Object} NotFoundStyles
  * @property {React.CSSProperties} pageStyles - Page Styles
@@ -60,8 +62,7 @@ function NotFoundPage() {
 export function Head() {
   return (
     <>
-      <title>Not found</title>
-      <link rel='icon' type='image/svg' href='/favicon.svg' />
+      <Seo title='Not found' />
     </>
   )
 }
