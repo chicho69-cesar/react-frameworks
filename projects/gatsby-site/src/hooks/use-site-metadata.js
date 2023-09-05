@@ -3,6 +3,11 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 const query = graphql`
   query {
+    allFile {
+      nodes {
+        name
+      }
+    }
     site {
       siteMetadata {
         title
