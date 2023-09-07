@@ -27,7 +27,7 @@ export default function Layout({ children, pageTitle }) {
           </li>
 
           <li className={styles.navLinkItem}>
-            <Link to='/my-blog' className={styles.navLinkText}>
+            <Link to='/blog' className={styles.navLinkText}>
               Blog
             </Link>
           </li>
