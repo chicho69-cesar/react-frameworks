@@ -8,21 +8,21 @@ import Seo from '../components/Seo'
 export const query = graphql`
   query {
     allMdx(sort: { frontmatter: { date: DESC } }) {
-    nodes {
-      frontmatter {
-        date(formatString: "MMMM D, YYYY")
-        slug
-        title
-      }
-      id
-      excerpt
-      parent {
-        ... on File {
-          modifiedTime(formatString: "MMMM D, YYYY")
+      nodes {
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          slug
+          title
+        }
+        id
+        excerpt
+        parent {
+          ... on File {
+            modifiedTime(formatString: "MMMM D, YYYY")
+          }
         }
       }
     }
-  }
   }
 `
 
