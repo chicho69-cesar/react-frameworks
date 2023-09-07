@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import * as React from 'react'
 
-import Seo from '../components/Seo'
+import Seo from '@/components/Seo'
 
 /**
  * @typedef {Object} NotFoundStyles

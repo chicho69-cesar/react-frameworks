@@ -1,8 +1,8 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 
-import Layout from '../components/Layout'
-import Seo from '../components/Seo'
+import Layout from '@/components/Layout'
+import Seo from '@/components/Seo'
 
 function IndexPage() {
   return (
