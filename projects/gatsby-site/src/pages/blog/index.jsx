@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
 import Layout from '@/components/Layout'
 import Seo from '@/components/Seo'
@@ -32,9 +32,13 @@ function BlogPage({ data }) {
     <Layout pageTitle='My Blog Posts'>
       {data.allMdx.nodes.map((post) => (
         <article key={post.id}>
-          <h2>{post.frontmatter.title}</h2>
+          <Link to={post.frontmatter.slug}>
+            <h3>{post.frontmatter.title}</h3>
+          </Link>
+
           <p>Posted: {post.frontmatter.date}</p>
-          <p>{post.excerpt}</p>
+          
+          {/* <p>{post.excerpt}</p> */}
         </article>
       ))}
     </Layout>
