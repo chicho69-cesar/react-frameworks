@@ -39,6 +39,13 @@ function BlogPostPage({ data, children }) {
         alt={data.mdx.frontmatter.hero_image_alt}
       />
 
+      <p>
+        Photo Credit:{" "}
+        <a href={data.mdx.frontmatter.hero_image_credit_link} target='_blank'>
+          {data.mdx.frontmatter.hero_image_credit_text}
+        </a>
+      </p>
+
       {children}
     </Layout>
   )
