@@ -1,4 +1,4 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 export default function Button({ label, theme, onPress }) {
@@ -18,8 +18,8 @@ export default function Button({ label, theme, onPress }) {
           style={[styles.button, { backgroundColor: '#fff' }]}
           onPress={onPress}
         >
-          <FontAwesome
-            name='picture-o'
+          <MaterialIcons
+            name='image-search'
             size={18}
             color='#25292e'
             style={styles.buttonIcon}
