@@ -4,46 +4,48 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby Minimal Starter
+  Gatsby Site
 </h1>
 
-## 🚀 Quick start
+## 🚀 Start the Project
 
-1.  **Create a Gatsby site.**
+1. **Install the dependencies.**
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+Para instalar las dependencias solo se necesita hacer seguir uno de los siguientes comandos:
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+```shell
+npm install
+yarn
+pnpm install
+```
 
-2.  **Start developing.**
+2. **Start the developing server.**
 
-    Navigate into your new site’s directory and start it up.
+Iniciamos el servidor de desarrollo:
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+```shell
+cd .\gatsby-project
 
-3.  **Open the code and start customizing!**
+npm run develop
+yarn develop
+pnpm run develop
+```
 
-    Your site is now running at http://localhost:8000!
+Accedemos al proyecto corriendo en el puerto 8000, accediendo al enlace <http://localhost:8000>!
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+3. **Iniciamos el proyecto en modo de producción**
 
-4.  **Learn more**
+Iniciamos el servidor de desarrollo:
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+```shell
+cd .\gatsby-project
 
-## 🚀 Quick start (Netlify)
+npm run build
+npm run serve
+```
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+Accedemos al proyecto corriendo en el puerto 8000, accediendo al enlace <http://localhost:8000>!
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+## ⭐ Observamos el proyecto
+
+![Gatsby](https://i.pinimg.com/originals/e0/7e/26/e07e260b322c0e925a5d806136d1c2d1.png)

@@ -1,58 +1,49 @@
-# Welcome to Remix!
+<p align="center">
+  <img src="./public/favicon.ico" />
+</p>
+<h1 align="center">
+  Remix Jokes App
+</h1>
 
-- [Remix Docs](https://remix.run/docs)
+## 🚀 Start the Project
 
-## Development
+1. **Install the dependencies.**
 
-From your terminal:
+Para instalar las dependencias solo se necesita hacer seguir uno de los siguientes comandos:
 
-```sh
+```shell
+npm install
+yarn
+pnpm install
+```
+
+2. **Start the developing server.**
+
+Iniciamos el servidor de desarrollo:
+
+```shell
+cd .\remix-project
+
 npm run dev
+yarn dev
+pnpm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+Accedemos al proyecto corriendo en el puerto 3000, accediendo al enlace <http://localhost:3000>!
 
-## Deployment
+3. **Iniciamos el proyecto en modo de producción**
 
-First, build your app for production:
+Iniciamos el servidor de desarrollo:
 
-```sh
+```shell
+cd .\remix-project
+
 npm run build
+npm run start
 ```
 
-Then run the app in production mode:
+Accedemos al proyecto corriendo en el puerto 3000, accediendo al enlace <http://localhost:3000>!
 
-```sh
-npm start
-```
+## ⭐ Observamos el proyecto
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over relevant code/assets from your current app to the new project that's pre-configured for your target server.
-
-Most importantly, this means everything in the `app/` directory, but if you've further customized your current application outside of there it may also include:
-
-- Any assets you've added/updated in `public/`
-- Any updated versions of root files such as `.eslintrc.js`, etc.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+![Remix](https://i.pinimg.com/originals/7a/4a/91/7a4a9182cdf5c3e69a61406846f6e2d8.png)
