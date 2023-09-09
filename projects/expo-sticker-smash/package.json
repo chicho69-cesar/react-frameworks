@@ -1,26 +1,29 @@
 {
-  "name": "expo-sticker-smash",
-  "version": "1.0.0",
-  "main": "./index.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
-  },
   "dependencies": {
+    "@expo/vector-icons": "13.0.0",
+    "@expo/webpack-config": "19.0.0",
     "expo": "~49.0.7",
+    "expo-image-picker": "~14.3.2",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.3",
-    "react-native-web": "~0.19.6",
-    "@expo/webpack-config": "19.0.0",
-    "@expo/vector-icons": "13.0.0",
-    "expo-image-picker": "~14.3.2"
+    "react-native-gesture-handler": "~2.12.0",
+    "react-native-reanimated": "~3.3.0",
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
-    "@babel/core": "7.20.2"
+    "@babel/core": "7.20.2",
+    "@babel/plugin-proposal-export-namespace-from": "7.18.9"
   },
-  "private": true
+  "main": "./index.js",
+  "name": "expo-sticker-smash",
+  "private": true,
+  "scripts": {
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "start": "expo start",
+    "web": "expo start --web"
+  },
+  "version": "1.0.0"
 }
