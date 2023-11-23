@@ -3,6 +3,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start"
