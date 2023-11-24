@@ -1,30 +1,39 @@
-import type { V2_MetaFunction } from '@remix-run/node'
-import { Link } from '@remix-run/react'
-
-import Main from '~/components/Main'
-
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
-  ]
-}
+import { Form } from '@remix-run/react'
 
 export default function HomePage() {
   return (
-    <Main>
-      <div className='font-[system-ui] leading-4'>
-        <div className='mx-auto max-w-7xl text-center'>
-          <h1 className='text-3xl font-bold text-slate-700'>Welcome to Remix</h1>
-          
-          <Link
-            to='/posts'
-            className='text-xl text-blue-600 mt-8'
-          >
-            Read the blog posts
-          </Link>
-        </div>
+    <div id='sidebar'>
+      <h1>Remix Contacts</h1>
+
+      <div>
+        <Form id='search-form' role='search'>
+          <input
+            id='q'
+            aria-label='Search contacts'
+            placeholder='Search'
+            type='search'
+            name='q'
+          />
+
+          <div id='search-spinner' aria-hidden hidden={true} />
+        </Form>
+
+        <Form method='post'>
+          <button type='submit'>New</button>
+        </Form>
       </div>
-    </Main>
+
+      <nav>
+        <ul>
+          <li>
+            <a href={`/contacts/1`}>Your Name</a>
+          </li>
+
+          <li>
+            <a href={`/contacts/2`}>Your Friend</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   )
 }

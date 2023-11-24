@@ -1,4 +1,5 @@
 import stylesheet from '~/tailwind.css'
+import styles from '~/app.css'
 
 import type { LinksFunction } from '@remix-run/node'
 import {
@@ -12,6 +13,7 @@ import {
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
+  { rel: 'stylesheet', href: styles },
 ]
 
 export default function App() {
@@ -27,6 +29,7 @@ export default function App() {
 
       <body>
         <Outlet />
+        
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
