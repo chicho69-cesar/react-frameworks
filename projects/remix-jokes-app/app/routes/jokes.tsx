@@ -66,7 +66,7 @@ export default function JokesPage() {
             <p>Here are a few more jokes to check out:</p>
             
             <ul>
-              {data.jokeListItems.map(({ id, name }) => (
+              {data.jokeListItems.map(({ id, name }: any) => (
                 <li key={id}>
                   <Link prefetch='intent' to={id}>{name}</Link>
                 </li>
