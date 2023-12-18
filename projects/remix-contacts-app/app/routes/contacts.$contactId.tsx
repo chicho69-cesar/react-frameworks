@@ -1,15 +1,18 @@
-import { Form } from '@remix-run/react'
+import { type LoaderFunction, json } from '@remix-run/node'
+import { Form, useLoaderData } from '@remix-run/react'
+
 import { Favorite } from '~/components/Favorite'
+import { type ContactRecord, getContact } from '~/data/data'
+
+export const loader: LoaderFunction= async ({ params }) => {
+  const { contactId } = params
+  const contact = await getContact(contactId!)
+
+  return json({ contact })
+}
 
 export default function Contact() {
-  const contact = {
-    first: 'Your',
-    last: 'Name',
-    avatar: 'https://loremflickr.com/200/200',
-    twitter: 'your_handle',
-    notes: 'Some notes',
-    favorite: true,
-  }
+  const { contact } = useLoaderData<{ contact: ContactRecord }>()
 
   return (
     <div id='contact'>
