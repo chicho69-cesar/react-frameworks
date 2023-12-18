@@ -3,6 +3,7 @@ import styles from '~/app.css'
 
 import {
   json,
+  type ActionFunction,
   type LinksFunction,
   type LoaderFunction
 } from '@remix-run/node'
@@ -18,7 +19,7 @@ import {
   useLoaderData
 } from '@remix-run/react'
 
-import { type ContactRecord, getContacts } from './data/data'
+import { type ContactRecord, getContacts, createEmptyContact } from './data/data'
 
 export const links: LinksFunction = () => {
   return [
@@ -30,6 +31,11 @@ export const links: LinksFunction = () => {
 export const loader: LoaderFunction = async () => {
   const contacts = await getContacts()
   return json({ contacts })
+}
+
+export const action: ActionFunction = async () => {
+  const contact = await createEmptyContact()
+  return json({ contact })
 }
 
 export default function App() {
