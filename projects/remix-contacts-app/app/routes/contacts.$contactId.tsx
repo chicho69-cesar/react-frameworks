@@ -1,9 +1,9 @@
-import { ActionFunction, json, type LoaderFunction } from '@remix-run/node'
+import { json, type ActionFunction, type LoaderFunction } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import invariant from 'tiny-invariant'
 
 import { Favorite } from '~/components/Favorite'
-import { getContact, type ContactRecord, updateContact } from '~/data/data'
+import { getContact, updateContact, type ContactRecord } from '~/data/data'
 
 export const loader: LoaderFunction= async ({ params }) => {
   const { contactId } = params

@@ -1,7 +1,6 @@
 import styles from '~/app.css'
 import stylesheet from '~/tailwind.css'
 
-import { useEffect, useState } from 'react'
 import {
   json,
   redirect,
@@ -22,6 +21,7 @@ import {
   useNavigation,
   useSubmit
 } from '@remix-run/react'
+import { useEffect, useState } from 'react'
 
 import { createEmptyContact, getContacts, type ContactRecord } from './data/data'
 
