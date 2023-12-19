@@ -1,5 +1,5 @@
-import type { FunctionComponent } from 'react'
 import { Form } from '@remix-run/react'
+import type { FunctionComponent } from 'react'
 
 import type { ContactRecord } from '~/data/data'
 

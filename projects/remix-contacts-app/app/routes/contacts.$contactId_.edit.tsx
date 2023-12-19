@@ -3,11 +3,11 @@ por defecto en Remix todas las rutas con el mismo prefijo de nombre serán
 nested routes, y cuando usamos un _ antes de un nombre de ruta, le indicamos
 a Remix que esa ruta no es nested. */
 
-import { json, type LoaderArgs } from '@remix-run/node'
+import { json, redirect, type ActionArgs, type LoaderArgs } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import invariant from 'tiny-invariant'
 
-import { type ContactRecord, getContact } from '../data/data'
+import { getContact, updateContact, type ContactRecord } from '../data/data'
 
 export const loader = async ({ params }: LoaderArgs) => {
   invariant(params.contactId, 'Missing contactId param')
@@ -18,6 +18,17 @@ export const loader = async ({ params }: LoaderArgs) => {
   }
 
   return json({ contact })
+}
+
+export const action = async ({ params, request }: ActionArgs) => {
+  invariant(params.contactId, 'Missing contactId param')
+  
+  const formData = await request.formData()
+  const updates = Object.fromEntries(formData)
+
+  await updateContact(params.contactId, updates)
+
+  return redirect(`/contacts/${params.contactId}`)
 }
 
 export default function EditContact() {
