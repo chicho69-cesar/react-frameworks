@@ -1,9 +1,9 @@
-import { json, type LoaderFunction } from '@remix-run/node'
+import { ActionFunction, json, type LoaderFunction } from '@remix-run/node'
 import { Form, useLoaderData } from '@remix-run/react'
 import invariant from 'tiny-invariant'
 
 import { Favorite } from '~/components/Favorite'
-import { getContact, type ContactRecord } from '~/data/data'
+import { getContact, type ContactRecord, updateContact } from '~/data/data'
 
 export const loader: LoaderFunction= async ({ params }) => {
   const { contactId } = params
@@ -18,6 +18,17 @@ export const loader: LoaderFunction= async ({ params }) => {
   }
 
   return json({ contact })
+}
+
+export const action: ActionFunction = async ({ params, request }) => {
+  const { contactId } = params
+  invariant(contactId, 'Missing contactId param')
+
+  const formData = await request.formData()
+
+  return updateContact(contactId, {
+    favorite: formData.get('favorite') === "true" 
+  })
 }
 
 export default function Contact() {

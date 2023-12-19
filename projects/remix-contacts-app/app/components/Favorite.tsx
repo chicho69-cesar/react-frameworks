@@ -1,4 +1,4 @@
-import { Form } from '@remix-run/react'
+import { useFetcher } from '@remix-run/react'
 import type { FunctionComponent } from 'react'
 
 import type { ContactRecord } from '~/data/data'
@@ -8,10 +8,11 @@ interface Props {
 }
 
 export const Favorite: FunctionComponent<Props> = ({ contact }) => {
+  const fetcher = useFetcher()
   const favorite = contact.favorite
 
   return (
-    <Form method='post'>
+    <fetcher.Form method='post'>
       <button
         aria-label={
           favorite
@@ -23,6 +24,6 @@ export const Favorite: FunctionComponent<Props> = ({ contact }) => {
       >
         {favorite ? '★' : '☆'}
       </button>
-    </Form>
+    </fetcher.Form>
   )
 }
