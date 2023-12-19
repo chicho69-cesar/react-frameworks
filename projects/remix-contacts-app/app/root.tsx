@@ -1,6 +1,7 @@
 import styles from '~/app.css'
 import stylesheet from '~/tailwind.css'
 
+import { useEffect, useState } from 'react'
 import {
   json,
   redirect,
@@ -30,8 +31,11 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export const loader: LoaderFunction = async () => {
-  const contacts = await getContacts()
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url)
+  const q = url.searchParams.get('q')
+  const contacts = await getContacts(q)
+
   return json({ contacts })
 }
 
@@ -41,8 +45,24 @@ export const action: ActionFunction = async () => {
 }
 
 export default function App() {
-  const { contacts } = useLoaderData<{ contacts: ContactRecord[]}>()
+  const { contacts, q } = useLoaderData<{
+    contacts: ContactRecord[]
+    q: string | null
+  }>()
   const navigation = useNavigation()
+  const [query, setQuery] = useState(q || '')
+
+  /* useEffect(() => {
+    const searchField = document.getElementById('q')
+
+    if (searchField instanceof HTMLInputElement) {
+      searchField.value = q || ''
+    }
+  }, [q]) */
+
+  useEffect(() => {
+    setQuery(q || '')
+  }, [q])
 
   return (
     <html lang='es'>
@@ -66,6 +86,9 @@ export default function App() {
                 placeholder='Search'
                 type='search'
                 name='q'
+                // defaultValue={q || ''}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
               />
     
               <div id='search-spinner' aria-hidden hidden={true} />
