@@ -5,6 +5,8 @@ export default function Button({ label, theme, onPress }) {
   if (theme === 'primary') {
     return (
       <View
+        /* Cuando queremos establecer varias propiedades de estado, que creamos,
+        las podemos añadir como si fueran un array. */
         style={[
           styles.buttonContainer,
           {

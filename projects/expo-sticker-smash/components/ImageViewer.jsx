@@ -9,7 +9,10 @@ export default function ImageViewer({
     : placeholderImageSource
 
   return (
-    <Image source={imageSource} style={styles.image} />
+    <Image
+      source={imageSource}
+      style={styles.image}
+    />
   )
 }
 

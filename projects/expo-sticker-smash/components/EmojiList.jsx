@@ -1,5 +1,6 @@
 import { FlatList, Image, Platform, Pressable, StyleSheet } from 'react-native'
 
+/* Creamos un array con la importación de las imágenes que vamos a utilizar. */
 const emojis = [
   require('../assets/images/emoji1.png'),
   require('../assets/images/emoji2.png'),

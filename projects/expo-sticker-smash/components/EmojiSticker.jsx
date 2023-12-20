@@ -7,14 +7,20 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 
+/* La librería de react native reanimated nos ayuda a crear componentes para React
+Native que puedan ser animados. */
 const AnimatedImage = Animated.createAnimatedComponent(Image)
 const AnimatedView = Animated.createAnimatedComponent(View)
 
 export default function EmojiSticker({ imageSize, stickerSource }) {
+  /* Creamos las variables para hacer transformaciones con react native reanimated. */
   const scaleImage = useSharedValue(imageSize)
   const translateX = useSharedValue(0)
   const translateY = useSharedValue(0)
 
+  /* Creamos los gestos que vamos a usar para hacer las transformaciones. El hook
+  useAnimatedGestureHandler nos permite crear gestos para nuestros componentes y de esta
+  forma poder aplicar transformaciones al hacer gestos. */
   const onDoubleTap = useAnimatedGestureHandler({
     onActive: () => {
       if (scaleImage.value !== imageSize * 2) {
@@ -23,6 +29,7 @@ export default function EmojiSticker({ imageSize, stickerSource }) {
     }
   })
 
+  /* Creamos un gesto que nos permita mover el sticker. */
   const onDrag = useAnimatedGestureHandler({
     onStart: (event, context) => {
       context.translateX = translateX.value
@@ -34,6 +41,10 @@ export default function EmojiSticker({ imageSize, stickerSource }) {
     },
   })
 
+  /* Creamos un estilo para nuestro sticker. El hook useAnimatedStyle nos permite
+  crear estilos para nuestros componentes y de esta forma poder aplicar estilos
+  al hacer gestos. El hook withSpring nos permite hacer transformaciones con
+  animaciones. */
   const imageStyle = useAnimatedStyle(() => {
     return {
       width: withSpring(scaleImage.value),

@@ -17,9 +17,12 @@ import EmojiSticker from './components/EmojiSticker'
 import IconButton from './components/IconButton'
 import ImageViewer from './components/ImageViewer'
 
+/* Si queremos usar imágenes con React Native y Expo, imágenes que estén en file system
+de nuestro dispositivo debemos de importarlo mediante require. */
 const PlaceholderImage = require('./assets/images/background-image.png')
 
 export default function App() {
+  /* Requerimos los permisos para usar la MediaLibrary */
   const [status, requestPermission] = MediaLibrary.usePermissions()
 
   const [selectedImage, setSelectedImage] = useState(null)
@@ -33,15 +36,18 @@ export default function App() {
   }
 
   const pickImageAsync = async () => {
+    /* Lanzamos el image picker para que el usuario pueda seleccionar una imagen. */
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       quality: 1,
     })
 
+    /* Si el usuario no cancela la selección de la imagen, la añadimos al estado. */
     if (!result.canceled) {
       setSelectedImage(result.assets[0].uri)
       setShowAppOptions(true)
     } else {
+      /* Las alerts en RN se muestran como advertencias nativas del dispositivo. */
       alert('You did not select any image.')
     }
   }
@@ -59,13 +65,18 @@ export default function App() {
   }
 
   const onSaveImageAsync = async () => {
+    /* Si la plataforma es Movil. */
     if (Platform.OS !== 'web') {
       try {
+        /* Capturamos la imagen del componente ImageViewer y la guardamos en la
+        MediaLibrary. El método captureRef() recibe como parámetro el componente y las
+        opciones de captura. En este caso, la opción de captura es: { height: 440, quality: 1 }. */
         const localUri = await captureRef(imageRef, {
           height: 440,
           quality: 1,
         })
 
+        /* Guardamos la imagen en la MediaLibrary. */
         await MediaLibrary.saveToLibraryAsync(localUri)
 
         if (localUri) {
@@ -76,12 +87,17 @@ export default function App() {
       }
     } else {
       try {
+        /* Capturamos la imagen del componente ImageViewer y la guardamos en el file system,
+        cuando la plataforma es web. El método domToImage.toJpeg() recibe como parámetro el
+        componente y las opciones de captura. En este caso, la opción de captura es:
+        { quality: 0.95, width: 320, height: 440 }. */
         const dataUrl = await domToImage.toJpeg(imageRef.current, {
           quality: 0.95,
           width: 320,
           height: 440,
         })
 
+        /* Creamos un link para descargar la imagen. */
         let link = document.createElement('a')
         link.download = 'sticker-smash.jpeg'
         link.href = dataUrl
@@ -142,6 +158,7 @@ export default function App() {
   )
 }
 
+/* En React Native podemos crear estilos como si utilizáramos css in js. */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,8 +1,10 @@
+/* La función registerRootComponent nos sirve para registrar la aplicación, es decir,
+poder ejecutarla y compilarla. */
 import { registerRootComponent } from 'expo'
 
 import App from './App'
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App)
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
+/* registerRootComponent llama a AppRegistry.registerComponent('main', () => App)
+y asegura que si cargas la aplicación en Expo Go o en una construcción nativa, 
+el entorno está configurado adecuadamente. */
 registerRootComponent(App)
