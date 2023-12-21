@@ -48,6 +48,8 @@ export default function HomePage({ allPostsData }) {
   )
 }
 
+/* Cuando usamos la función getStaticProps en una ruta que no es dinámica, solamente nos
+regresa las props que esta pagina en especifico utilizara. */
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
 

@@ -8,28 +8,28 @@ import html from 'remark-html'
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {
-  // Get file names under /posts
+  // Obtenemos los nombres de los archivos en el directorio posts
   const fileNames = fs.readdirSync(postsDirectory)
 
   const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
+    // Eliminamos ".md" del nombre del archivo para obtener el id
     const id = fileName.replace(/\.md$/, '')
 
-    // Read markdown file as string
+    // Leemos el archivo markdown como cadena de texto
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    // Use gray-matter to parse the post metadata section
+    // Usamos gray-matter para parsear la sección de metadatos del post
     const matterResult = matter(fileContents)
 
-    // Combine the data with the id
+    // Combinamos los datos con el id
     return {
       id,
       ...matterResult.data,
     }
   })
 
-  // Sort posts by date
+  // Ordenamos los posts por fecha
   return allPostsData.sort((a, b) => {
     return (a.date < b.date) ? 1 : -1
   })
@@ -65,17 +65,17 @@ export async function getPostData(id) {
   const fullPath = path.join(postsDirectory, `${id}.md`)
   const fileContent = fs.readFileSync(fullPath, 'utf8')
 
-  // Use gray-matter to parse the post metadata section
+  // Usamos gray-matter para parsear la sección de metadatos del post
   const matterResult = matter(fileContent)
 
-  // Use remark to convert markdown into HTML string
+  // Usamos remark para convertir el markdown en una cadena de texto HTML
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content)
 
   const contentHtml = processedContent.toString()
 
-  // Combine the data with the id and html content
+  // Combinamos los datos con el id y el contenido HTML
   return {
     id,
     contentHtml,

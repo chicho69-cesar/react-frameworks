@@ -12,6 +12,8 @@ export default function FirstPostPage() {
           <title>First Post</title>
         </Head>
 
+        {/* El componente Script de Next nos ayuda a cargar Scripts externos a 
+        nuestra aplicación. */}
         {/* <Script
           src='https://connect.facebook.net/en_US/sdk.js'
           strategy='lazyOnload'

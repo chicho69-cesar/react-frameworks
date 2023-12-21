@@ -26,6 +26,9 @@ export default function PostPage({ postData }) {
   )
 }
 
+/* La función getStaticPaths se usa para generar las rutas dinámicas. Esta función
+nos regresa un array con las paths a traves de las cuales se generaran todas las rutas
+que serán disponibles. */
 export async function getStaticPaths() {
   const paths = getAllPostIds()
 
@@ -35,6 +38,10 @@ export async function getStaticPaths() {
   }
 }
 
+/* La función getStaticProps se usa para obtener las props con la cual se generara la pagina
+es decir, nos regresar las props que usara cada ruta creada. Dentro de una ruta dinámica
+esta recibe los params exportados por getStaticPaths. Donde por cada param regresara unas
+props especificas. */
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id)
 

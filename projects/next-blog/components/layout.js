@@ -12,6 +12,8 @@ export default function Layout({ children, home }) {
   return (
     <>
       <div className={styles.container}>
+        {/* El componente Head de NextJS nos ayuda a definir los meta tags y todo 
+        lo referente al head de nuestro html final. */}
         <Head>
           <link rel='icon' href='/favicon.ico' />
           <meta
