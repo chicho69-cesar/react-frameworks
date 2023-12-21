@@ -44,7 +44,7 @@ export const loader = async ({ request }: LoaderArgs) => {
         <generator>Kody the Koala</generator>
         <ttl>40</ttl>
         ${jokes
-          .map((joke) =>
+          .map((joke: any) =>
             `
             <item>
               <title><![CDATA[${escapeCdata(

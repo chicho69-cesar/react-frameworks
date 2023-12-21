@@ -20,6 +20,7 @@ export default function HomePage() {
         <nav>
           <ul>
             <li>
+              {/* Navegamos hacia la ruta /jokes */}
               <Link to='jokes'>Read Jokes</Link>
             </li>
 

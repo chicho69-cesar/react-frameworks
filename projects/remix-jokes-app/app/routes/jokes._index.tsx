@@ -12,6 +12,7 @@ export const loader = async () => {
     take: 1,
   })
 
+  /* Si no encontramos la randomJoke lanzamos una respuesta 404. */
   if (!randomJoke) {
     throw new Response('No random joke found', {
       status: 404,
@@ -24,6 +25,7 @@ export const loader = async () => {
 export function ErrorBoundary() {
   const error = useRouteError()
 
+  /* Si el error de esta pagina es 404, mostramos lo siguiente. */
   if (isRouteErrorResponse(error) && error.status === 404) {
     <div className='error-container'>
       <p>There are no jokes to display.</p>

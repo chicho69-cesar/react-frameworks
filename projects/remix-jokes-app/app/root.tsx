@@ -43,10 +43,7 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
-function Document({
-  children,
-  title,
-}: PropsWithChildren<{ title?: string }>) {
+function Document({ children, title }: PropsWithChildren<{ title?: string }>) {
   return (
     <html lang='es'>
       <head>
@@ -79,9 +76,13 @@ function Document({
   )
 }
 
+/* Cuando en una ruta exportamos un componente llamado ErrorBoundary, este componente
+sera ejecutado cuando se produzca un error en la ruta. */
 export function ErrorBoundary() {
+  /* El hook useRouteError nos permite obtener el error que se produjo en la ruta. */
   const error = useRouteError()
 
+  /* Si el error es un Route Error Response. Como por ejemplo un 404 */
   if (isRouteErrorResponse(error)) {
     return (
       <Document

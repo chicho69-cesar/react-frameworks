@@ -47,6 +47,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 export const action = async ({ params, request }: ActionArgs) => {
   const form = await request.formData()
   
+  /* Si intentamos la acción delete. */
   if (form.get('intent') !== 'delete') {
     throw new Response(
       `The intent ${form.get("intent")} is not supported`,

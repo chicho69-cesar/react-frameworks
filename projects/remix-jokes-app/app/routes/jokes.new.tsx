@@ -84,6 +84,9 @@ export default function JokesNewPage() {
   const navigation = useNavigation()
 
   if (navigation.formData) {
+    /* Mediante el hook useNavigation no solo podemos acceder al estado de la navegación,
+    sino que también podemos acceder a los datos que envía el usuario, y a otros parámetros
+    involucrados con la navegación. */
     const content = navigation.formData.get('content') as (string | null)
     const name = navigation.formData.get('name') as (string | null)
 
