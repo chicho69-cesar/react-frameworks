@@ -1,6 +1,8 @@
-import { Link } from 'gatsby'
+// En gatsby aun es necesario importar React en las paginas
 import * as React from 'react'
+import { Link } from 'gatsby'
 
+/* Empleamos el alias @ para importar elementos del directorio src */
 import Seo from '@/components/Seo'
 
 /**
@@ -59,6 +61,8 @@ function NotFoundPage() {
   )
 }
 
+/* Al exportar el componente Head en las paginas de nuestro proyecto gatsby, es lo que
+se renderiza en el elemento head de nuestro html. */
 export function Head() {
   return (
     <>
@@ -67,4 +71,6 @@ export function Head() {
   )
 }
 
+/* La exportación por defecto de un componente es el componente principal, que sera
+renderizado en la pagina a la cual se accede del directorio pages. */
 export default NotFoundPage

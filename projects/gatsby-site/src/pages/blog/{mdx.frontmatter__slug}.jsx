@@ -1,3 +1,11 @@
+/* En gatsby el routing dinámico se declara entre llaves la ruta, pero debemos de
+declarar en el nombre el recurso de donde se van a extraer cada elemento para construir
+cada una de las rutas. En este caso los archivos mdx, donde cada pagina tendrá un id
+que lo identifica donde en este caso sera del frontmatter el slug definido en cada
+archivo mdx. 
+
+Más información aquí: https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/ */
+
 import * as React from 'react'
 import { graphql } from 'gatsby'
 // import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -5,6 +13,8 @@ import { graphql } from 'gatsby'
 import Layout from '@/components/Layout'
 import Seo from '@/components/Seo'
 
+/* Hacemos una query para traer la información de nuestros archivos mdx que creamos
+en la carpeta blog y configuramos con el plugin de mdx y gatsby-source-filesystem. */
 export const query = graphql`
   query MyQuery($id: String) {
     mdx(id: { eq: $id }) {

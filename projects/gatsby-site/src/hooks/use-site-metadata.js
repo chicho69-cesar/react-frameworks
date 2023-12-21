@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
+/* La metadata a la cual accedemos en esta query es la definida en la configuración
+de gatsby en el proyecto. */
 const query = graphql`
   query {
     allFile {

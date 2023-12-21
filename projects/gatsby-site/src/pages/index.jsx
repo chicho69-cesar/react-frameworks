@@ -14,6 +14,8 @@ function IndexPage() {
         src='https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large'
       /> */}
 
+      {/* Utilizamos el componente StaticImage de gatsby-plugin-image
+      el cual nos provee de un mejor rendimiento en nuestra pagina. */}
       <StaticImage
         alt='Clifford, a reddish-brown pitbull, dozing in a bean bag chair'
         src='../images/clifford.jpg'

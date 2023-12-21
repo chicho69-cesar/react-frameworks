@@ -4,7 +4,8 @@ import { Link, graphql } from 'gatsby'
 import Layout from '@/components/Layout'
 import Seo from '@/components/Seo'
 
-/* Las queries exportadas mandan la data a la page */
+/* Las queries exportadas mandan la data a la page y head. Ahí la podemos utilizar
+para renderizar el contenido. */
 export const query = graphql`
   query {
     allMdx(sort: { frontmatter: { date: DESC } }) {

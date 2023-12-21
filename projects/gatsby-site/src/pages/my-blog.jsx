@@ -5,7 +5,9 @@ import { Link } from 'gatsby'
 import Layout from '@/components/Layout'
 import Seo from '@/components/Seo'
 
-/* Las queries exportadas mandan la data a la page */
+/* Las queries exportadas mandan la data a la page como si fueran por ejemplo
+las función getServerSideProps o getStaticProps de NextJS pages router, o la función
+load en Remix. */
 /* export const query = graphql`
   query {
     allMdx(sort: { frontmatter: { date: DESC } }) {

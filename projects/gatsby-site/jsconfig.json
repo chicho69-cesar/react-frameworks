@@ -1,3 +1,5 @@
+/* Configuramos el símbolo @ como path para hacer importaciones de componentes y elementos
+de la carpeta src en otros archivos de la carpeta src. */
 {
   "compilerOptions": {
     "paths": {
