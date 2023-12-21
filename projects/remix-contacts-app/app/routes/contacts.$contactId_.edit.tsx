@@ -95,6 +95,8 @@ export default function EditContact() {
           Save
         </button>
 
+        {/* Cuando hacemos navigate(-1) lo que hacemos es ir hacia atrás en el 
+        Stack de navegación. */}
         <button type='button' onClick={() => navigate(-1)}>
           Cancel
         </button>

@@ -78,6 +78,8 @@ export default function Contact() {
             action='destroy'
             method='post'
             onSubmit={(event) => {
+              /* La función onSubmit en el formulario nos sirve para interceptar el submit
+              del formulario antes de realizarlo. */
               const response = confirm(
                 'Please confirm you want to delete this record.'
               )
