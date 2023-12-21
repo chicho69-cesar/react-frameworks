@@ -23,15 +23,17 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
+/* Componente renderizado en la ruta /posts/:slug */
 export default function PostsSlugPage() {
   const { post, html } = useLoaderData<typeof loader>()
 
   return (
-    <main className='mx-auto max-w-4xl'>
-      <h1 className='my-6 pb-3 border-b-2 text-center text-3xl'>
+    <main className='max-w-4xl mx-auto'>
+      <h1 className='pb-3 my-6 text-3xl text-center border-b-2'>
         Some Post: {post.title}
       </h1>
 
+      {/* Con el siguiente código podemos renderizar código html de una cadena de texto. */}
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </main>
   )

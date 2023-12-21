@@ -5,6 +5,9 @@ import { Link, useLoaderData } from '@remix-run/react'
 import { getPosts } from '~/models/post.server'
 import Main from '~/components/Main'
 
+/* La función loader se ejecuta antes de que la ruta sea renderizada y esta función regresa
+la data que se va a utilizar en la ruta. Es decir, esta función carga la data que usara
+la pagina, algo asi como lo que hace getServerSideProps o getStaticProps en Next. */
 export const loader = async () => {
   return json({ posts: await getPosts() })
 }
@@ -15,17 +18,19 @@ export const meta: V2_MetaFunction = () => {
   ]
 }
 
+/* Componente renderizado en la ruta /posts */
 export default function PostsPage() {
+  /* El hook useLoaderData nos ayuda a obtener la data que nos manda la función loader. */
   const { posts } = useLoaderData<typeof loader>()
 
   return (
     <Main>
-      <h1 className='text-center text-slate-700 text-3xl'>Posts</h1>
+      <h1 className='text-3xl text-center text-slate-700'>Posts</h1>
 
       <div>
         <Link
           to='admin'
-          className='block text-center text-white bg-red-500 px-4 py-2 my-3 rounded-md shadow-md uppercase'
+          className='block px-4 py-2 my-3 text-center text-white uppercase bg-red-500 rounded-md shadow-md'
         >
           Admin
         </Link>
@@ -35,7 +40,7 @@ export default function PostsPage() {
             <li key={post.slug}>
               <Link
                 to={post.slug}
-                className='text-blue-600 text-xl'
+                className='text-xl text-blue-600'
               >
                 {post.title}
               </Link>

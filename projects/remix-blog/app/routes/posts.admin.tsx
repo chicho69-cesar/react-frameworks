@@ -17,8 +17,8 @@ export default function PostsAdminPage() {
   const { posts } = useLoaderData<typeof loader>()
 
   return (
-    <div className='mx-auto max-w-4xl'>
-      <h1 className='my-6 mb-2 pb-3 border-b-2 text-center text-3xl'>
+    <div className='max-w-4xl mx-auto'>
+      <h1 className='pb-3 my-6 mb-2 text-3xl text-center border-b-2'>
         Blog Admin
       </h1>
 
@@ -39,6 +39,10 @@ export default function PostsAdminPage() {
         </nav>
 
         <main className='col-span-4 md:col-span-3'>
+          {/* Si usamos aquí el componente Outlet, todas las rutas que sigan después
+          de posts/admin se van a renderizar aquí cuando se navegue a ellas, y si por ejemplo,
+          tuviéramos la ruta /posts/admin/_index, esta ruta seria la que se renderizaria aquí
+          por defecto. */}
           <Outlet />
         </main>
       </div>

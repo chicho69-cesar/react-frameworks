@@ -38,6 +38,7 @@ export const action = async ({ request }: ActionArgs) => {
     markdown
   )
 
+  /* Regresamos un redirect para crear una navegación después de llamar a esta acción. */
   return redirect('/posts/admin')
 }
 
@@ -49,6 +50,7 @@ export const meta: V2_MetaFunction = () => {
 
 const inputClassName = 'w-full rounded border border-gray-200 px-2 py-1 text-md text-gray-700 font-normal outline-none'
 
+/* Componente renderizado en la ruta /posts/admin/new */
 export default function PostsAdminNewPage() {
   const errors = useActionData<typeof action>()
   const navigation = useNavigation()
@@ -58,7 +60,7 @@ export default function PostsAdminNewPage() {
 
   return (
     <Form method='post'>
-      <p className='mb-3 text-gray-500 font-bold'>
+      <p className='mb-3 font-bold text-gray-500'>
         <label>
           Post Title:{' '}
           {errors?.title ? (
@@ -75,7 +77,7 @@ export default function PostsAdminNewPage() {
         </label>
       </p>
 
-      <p className='mb-3 text-gray-500 font-bold'>
+      <p className='mb-3 font-bold text-gray-500'>
         <label>
           Post Slug:{' '}
           {errors?.slug ? (
@@ -92,7 +94,7 @@ export default function PostsAdminNewPage() {
         </label>
       </p>
 
-      <p className='mb-3 text-gray-500 font-bold'>
+      <p className='mb-3 font-bold text-gray-500'>
         <label htmlFor={markdownId}>
           Markdown:{' '}
           {errors?.markdown ? (
@@ -117,7 +119,7 @@ export default function PostsAdminNewPage() {
           name='intent'
           value='create'
           disabled={isCreating}
-          className='rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300'
+          className='px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300'
         >
           {isCreating ? 'Creating...' : 'Create Post'}
         </button>

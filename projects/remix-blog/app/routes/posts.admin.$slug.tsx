@@ -12,9 +12,13 @@ export const loader: LoaderFunction = async ({ params }) => {
   const post = await getPost(params.slug)
   invariant(post, `Post not found: ${params.slug}`)
 
+  /* La función json nos regresa la información en formato JSON. */
   return json({ post })
 }
 
+/* La función action que se exporta en una ruta de Remix es la acción que se ejecuta en
+las acciones que se llaman en los Form de Remix. Cuando esta función se llama, la pagina
+se recargará para revalidar la información por si la action la modifico. */
 export const action: ActionFunction = async ({ params, request }) => {
   invariant(params.slug, 'Slug is required')
 
@@ -67,9 +71,16 @@ export const meta: V2_MetaFunction = () => {
 
 const inputClassName = 'w-full rounded border border-gray-500 px-2 py-1 text-md text-gray-700 font-normal outline-none'
 
+/* Componente renderizado en la ruta /posts/admin/:slug */
 export default function PostsAdminSlugPage() {
   const { post } = useLoaderData<typeof loader>()
+  /* El hook useActionData nos ayuda a obtener la información que regresa la función 
+  action. */
   const errors = useActionData<typeof action>()
+  /* El hook useNavigation nos ayuda a obtener información sobre la navegación que se está
+  realizado, teniendo 3 estados diferente loading para cuando se esta cargando la información,
+  submitting para cuando se esta enviando la información a la action e idle para cuando se esta
+  cargando la información. */
   const navigation = useNavigation()
 
   const [titleValue, setTitleValue] = useState('')
@@ -86,12 +97,17 @@ export default function PostsAdminSlugPage() {
   const isSubmitting = Boolean(navigation.state === 'submitting')
 
   return (
+    /* Utilizamos el Form de Remix, el cual si se define la action, mandara llamar a la ruta
+    la cual coincida con la action definida en este Form a partir de la ruta en la que estamos,
+    es decir si estamos en la ruta posts/admin/:slug y la acción aquí se llamara destroy.
+    Mandaría a ejecutar la action de la ruta posts/admin/:slug/destroy. Si por otro lado
+    no se define la action se ejecutara la definida en esta misma ruta. */
     <Form method='post'>
       <p className='mb-3 text-red-600'>
         {(errors as { message: string } | undefined)?.message}
       </p>
 
-      <p className='mb-3 text-gray-500 font-bold'>
+      <p className='mb-3 font-bold text-gray-500'>
         <label>
           Post Title:{' '}
           {(errors as Post)?.title ? (
@@ -109,7 +125,7 @@ export default function PostsAdminSlugPage() {
         </label>
       </p>
 
-      <p className='mb-3 text-gray-500 font-bold'>
+      <p className='mb-3 font-bold text-gray-500'>
         <label>
           Post Slug:{' '}
           {(errors as Post)?.slug ? (
@@ -127,7 +143,7 @@ export default function PostsAdminSlugPage() {
         </label>
       </p>
 
-      <p className='mb-3 text-gray-500 font-bold'>
+      <p className='mb-3 font-bold text-gray-500'>
         <label htmlFor={markdownId}>
           Markdown:{' '}
           {(errors as Post)?.markdown ? (
@@ -147,13 +163,13 @@ export default function PostsAdminSlugPage() {
         />
       </p>
 
-      <div className='flex justify-end items-center gap-4'>
+      <div className='flex items-center justify-end gap-4'>
         <button
           type='submit'
           name='intent'
           value='delete'
           disabled={isSubmitting}
-          className='rounded bg-red-500  py-2 px-4 text-white hover:bg-red-600 focus:bg-red-400 disabled:bg-red-300'
+          className='px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 focus:bg-red-400 disabled:bg-red-300'
         >
           Delete post
         </button>
@@ -163,7 +179,7 @@ export default function PostsAdminSlugPage() {
           name='intent'
           value='update'
           disabled={isSubmitting}
-          className='rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300'
+          className='px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300'
         >
           Update post
         </button>
