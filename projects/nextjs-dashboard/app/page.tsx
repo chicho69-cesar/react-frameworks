@@ -1,6 +1,9 @@
-// import AcmeLogo from '@/app/ui/acme-logo'
+import styles from '@/app/ui/home.module.css'
+
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+
+// import AcmeLogo from '@/app/ui/acme-logo'
 
 export default function Page() {
   return (
@@ -11,6 +14,12 @@ export default function Page() {
       
       <div className='flex flex-col gap-4 mt-4 grow md:flex-row'>
         <div className='flex flex-col justify-center gap-6 px-6 py-10 rounded-lg bg-gray-50 md:w-2/5 md:px-20'>
+          {/* <div
+            className='h-0 w-0 border-b-[30px] border-l-[20px] border-r-[20px] border-b-black border-l-transparent border-r-transparent'
+          /> */}
+
+          <div className={styles.shape} />
+          
           <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
             <strong>Welcome to Acme.</strong> This is the example for the{' '}
             
@@ -20,7 +29,7 @@ export default function Page() {
             
             , brought to you by Vercel.
           </p>
-          
+
           <Link
             href='/login'
             className='flex items-center self-start gap-5 px-6 py-3 text-sm font-medium text-white transition-colors bg-blue-500 rounded-lg hover:bg-blue-400 md:text-base'
