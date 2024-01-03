@@ -2,14 +2,15 @@ import styles from '@/app/ui/home.module.css'
 
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { lusitana } from './ui/fonts'
 
-// import AcmeLogo from '@/app/ui/acme-logo'
+import AcmeLogo from '@/app/ui/acme-logo'
 
 export default function Page() {
   return (
     <main className='flex flex-col min-h-screen p-6'>
       <div className='flex items-end h-20 p-4 bg-blue-500 rounded-lg shrink-0 md:h-52'>
-        {/* <AcmeLogo /> */}
+        <AcmeLogo />
       </div>
       
       <div className='flex flex-col gap-4 mt-4 grow md:flex-row'>
@@ -20,7 +21,12 @@ export default function Page() {
 
           <div className={styles.shape} />
           
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
+          <p
+            className={`
+              ${lusitana.className} antialiased
+              text-xl text-gray-800 md:text-3xl md:leading-normal
+            `}
+          >
             <strong>Welcome to Acme.</strong> This is the example for the{' '}
             
             <a href='https://nextjs.org/learn/' className='text-blue-500'>
