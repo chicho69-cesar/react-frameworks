@@ -26,7 +26,7 @@ export default async function InvoicesTable({
                 <div className='flex items-center justify-between pb-4 border-b'>
                   <div>
                     <div className='flex items-center mb-2'>
-                      <Image
+                      <img
                         src={invoice.image_url}
                         className='mr-2 rounded-full'
                         width={28}
@@ -98,11 +98,12 @@ export default async function InvoicesTable({
                 >
                   <td className='py-3 pl-6 pr-3 whitespace-nowrap'>
                     <div className='flex items-center gap-3'>
-                      <Image
+                      <img
                         src={invoice.image_url}
-                        className='rounded-full'
+                        className='rounded-full aspect-square object-cover'
                         width={28}
                         height={28}
+                        alt='Invoice image'
                       />
                       
                       <p>{invoice.name}</p>

@@ -104,35 +104,50 @@ export async function fetchLatestInvoices() {
       email: 'cesar@gmail.com',
       id: '1',
       image_url: 'https://i.pinimg.com/originals/2c/4c/67/2c4c67f144c8ed1600be38d06d8d1765.jpg',
-      name: 'Cesar'
+      name: 'Cesar',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
     },
     {
       amount: '$5,000',
       email: 'hector@gmail.com',
       id: '2',
       image_url: 'https://i.pinimg.com/originals/14/f3/18/14f31893d67ac33bbbe2d72e4d32fff9.png',
-      name: 'Hector'
+      name: 'Hector',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
     },
     {
       amount: '$7,200',
       email: 'aranzazu@gmail.com',
       id: '3',
       image_url: 'https://i.pinimg.com/originals/07/60/ff/0760ff64144783c7fefeb5f0d6d7c379.png',
-      name: 'Aranzazu'
+      name: 'Aranzazu',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
     },
     {
       amount: '$2,100',
       email: 'manuel@gmail.com',
       id: '4',
       image_url: 'https://i.pinimg.com/originals/2c/7f/d3/2c7fd35e35e5a1f6d6de2e11dfcf1d0b.png',
-      name: 'Manuel'
+      name: 'Manuel',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
     },
     {
       amount: '$1,900',
       email: 'luis@gmail.com',
       id: '5',
       image_url: 'https://i.pinimg.com/originals/02/9e/98/029e986f486e2a45565b4606b388ef54.png',
-      name: 'Luis'
+      name: 'Luis',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
     }
   ]
 
@@ -207,6 +222,61 @@ export async function fetchFilteredInvoices(
   currentPage: number,
 ) {
   noStore()
+
+  const filteredInvoices: InvoicesTable[] = [
+    {
+      amount: 1900,
+      email: 'cesar@gmail.com',
+      id: '1',
+      image_url: 'https://i.pinimg.com/originals/2c/4c/67/2c4c67f144c8ed1600be38d06d8d1765.jpg',
+      name: 'Cesar',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
+    },
+    {
+      amount: 5000,
+      email: 'hector@gmail.com',
+      id: '2',
+      image_url: 'https://i.pinimg.com/originals/14/f3/18/14f31893d67ac33bbbe2d72e4d32fff9.png',
+      name: 'Hector',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'pending'
+    },
+    {
+      amount: 7200,
+      email: 'aranzazu@gmail.com',
+      id: '3',
+      image_url: 'https://i.pinimg.com/originals/07/60/ff/0760ff64144783c7fefeb5f0d6d7c379.png',
+      name: 'Aranzazu',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
+    },
+    {
+      amount: 2100,
+      email: 'manuel@gmail.com',
+      id: '4',
+      image_url: 'https://i.pinimg.com/originals/2c/7f/d3/2c7fd35e35e5a1f6d6de2e11dfcf1d0b.png',
+      name: 'Manuel',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'pending'
+    },
+    {
+      amount: 1900,
+      email: 'luis@gmail.com',
+      id: '5',
+      image_url: 'https://i.pinimg.com/originals/02/9e/98/029e986f486e2a45565b4606b388ef54.png',
+      name: 'Luis',
+      customer_id: '1234',
+      date: '2024-01-04',
+      status: 'paid'
+    }
+  ]
+
+  return filteredInvoices
 
   const offset = (currentPage - 1) * ITEMS_PER_PAGE
 
