@@ -337,6 +337,10 @@ export async function fetchInvoicesPages(query: string) {
 export async function fetchInvoiceById(id: string) {
   noStore()
 
+  if (id === '2e94d1ed-d220-449f-9f11-f0bbceed9645') {
+    return undefined
+  }
+
   return {
     amount: 1900,
     id: '1',
@@ -361,6 +365,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }))
 
+    console.log(invoice)
     return invoice[0]
   } catch (error) {
     console.error('Database Error:', error)
