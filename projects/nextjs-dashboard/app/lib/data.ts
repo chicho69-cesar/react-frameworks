@@ -364,6 +364,29 @@ export async function fetchInvoiceById(id: string) {
 export async function fetchCustomers() {
   noStore()
 
+  return [
+    {
+      id: '1',
+      name: 'Cesar'
+    },
+    {
+      id: '2',
+      name: 'Hector'
+    },
+    {
+      id: '3',
+      name: 'Aranzazu'
+    },
+    {
+      id: '4',
+      name: 'Manuel'
+    },
+    {
+      id: '5',
+      name: 'Luis'
+    }
+  ] as CustomerField[]
+
   try {
     const data = await sql<CustomerField>`
       SELECT

@@ -7,10 +7,11 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { Button } from '@/app/ui/button'
+import { createInvoice } from '@/app/lib/actions'
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   return (
-    <form>
+    <form action={createInvoice}>
       <div className='p-4 rounded-md bg-gray-50 md:p-6'>
         {/* Customer Name */}
         <div className='mb-4'>
