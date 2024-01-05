@@ -96,7 +96,9 @@ export async function fetchRevenue() {
 export async function fetchLatestInvoices() {
   noStore()
 
-  return [
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+
+  const latestInvoices: any[] = [
     {
       amount: '$10,000',
       email: 'cesar@gmail.com',
@@ -132,7 +134,9 @@ export async function fetchLatestInvoices() {
       image_url: 'https://i.pinimg.com/originals/02/9e/98/029e986f486e2a45565b4606b388ef54.png',
       name: 'Luis'
     }
-  ] as any[]
+  ]
+
+  return latestInvoices
 
   try {
     const data = await sql<LatestInvoiceRaw>`
