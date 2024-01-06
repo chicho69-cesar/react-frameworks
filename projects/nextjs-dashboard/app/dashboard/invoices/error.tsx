@@ -2,6 +2,9 @@
  
 import { useEffect } from 'react'
  
+/* La pagina de error en una ruta es la pagina que va a aparecer cuando suceda un error,
+en la ruta especifica o en una ruta hija si no tienen un archivo que haga catch del 
+error, esta función recibe el error y una función para hacer reset de la pagina. */
 export default function Error({
   error,
   reset,
@@ -20,6 +23,7 @@ export default function Error({
         Something went wrong!
       </h2>
 
+      {/* Ejecutamos la función para hacer reset de la pagina. */}
       <button
         className='px-4 py-2 mt-4 text-sm text-white transition-colors bg-blue-500 rounded-md hover:bg-blue-400'
         onClick={

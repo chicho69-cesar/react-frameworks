@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation'
 import Form from '@/app/ui/invoices/edit-form'
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs'
 import { fetchCustomers, fetchInvoiceById } from '@/app/lib/data'
- 
+
+/* Uno de los datos que reciben las paginas como props son los params para cuando
+tenemos segmentos de rutas dinámicos usando []. */
 export default async function Page({
   params
 } : {
@@ -15,6 +17,7 @@ export default async function Page({
     fetchCustomers(),
   ])
 
+  /* Si no encuentra la factura, redirige a la pagina de not found. */
   if (!invoice) {
     notFound()
   }

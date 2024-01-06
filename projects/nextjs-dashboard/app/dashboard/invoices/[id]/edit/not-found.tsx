@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { FaceFrownIcon } from '@heroicons/react/24/outline'
 
+/* El archivo not-found nos ayuda para hacer catch de la ejecución de la función
+notFound de next/navigation, asi también como para mostrar paginas de error 404. */
 export default function NotFound() {
   return (
     <main className='flex flex-col items-center justify-center h-full gap-2'>

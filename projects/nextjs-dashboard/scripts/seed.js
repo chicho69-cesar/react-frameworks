@@ -9,7 +9,9 @@ const bcrypt = require('bcrypt')
 
 async function seedUsers(client) {
   try {
+    /* Usamos la función de vercel postgres para crear una extensión en la base de datos */
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`
+
     // Create the "users" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS users (
@@ -26,12 +28,13 @@ async function seedUsers(client) {
     const insertedUsers = await Promise.all(
       users.map(async (user) => {
         const hashedPassword = await bcrypt.hash(user.password, 10);
+
         return client.sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        ON CONFLICT (id) DO NOTHING;
-      `
-      }),
+          INSERT INTO users (id, name, email, password)
+          VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+          ON CONFLICT (id) DO NOTHING;
+        `
+      })
     )
 
     console.log(`Seeded ${insertedUsers.length} users`)
@@ -52,14 +55,14 @@ async function seedInvoices(client) {
 
     // Create the "invoices" table if it doesn't exist
     const createTable = await client.sql`
-    CREATE TABLE IF NOT EXISTS invoices (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    customer_id UUID NOT NULL,
-    amount INT NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    date DATE NOT NULL
-  );
-`
+      CREATE TABLE IF NOT EXISTS invoices (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        customer_id UUID NOT NULL,
+        amount INT NOT NULL,
+        status VARCHAR(255) NOT NULL,
+        date DATE NOT NULL
+      );
+    `
 
     console.log(`Created "invoices" table`)
 
@@ -67,11 +70,11 @@ async function seedInvoices(client) {
     const insertedInvoices = await Promise.all(
       invoices.map(
         (invoice) => client.sql`
-        INSERT INTO invoices (customer_id, amount, status, date)
-        VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
-        ON CONFLICT (id) DO NOTHING;
-      `,
-      ),
+          INSERT INTO invoices (customer_id, amount, status, date)
+          VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
+          ON CONFLICT (id) DO NOTHING;
+        `
+      )
     )
 
     console.log(`Seeded ${insertedInvoices.length} invoices`)
@@ -106,11 +109,11 @@ async function seedCustomers(client) {
     const insertedCustomers = await Promise.all(
       customers.map(
         (customer) => client.sql`
-        INSERT INTO customers (id, name, email, image_url)
-        VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
-        ON CONFLICT (id) DO NOTHING;
-      `,
-      ),
+          INSERT INTO customers (id, name, email, image_url)
+          VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
+          ON CONFLICT (id) DO NOTHING;
+        `
+      )
     )
 
     console.log(`Seeded ${insertedCustomers.length} customers`)
@@ -141,11 +144,11 @@ async function seedRevenue(client) {
     const insertedRevenue = await Promise.all(
       revenue.map(
         (rev) => client.sql`
-        INSERT INTO revenue (month, revenue)
-        VALUES (${rev.month}, ${rev.revenue})
-        ON CONFLICT (month) DO NOTHING;
-      `,
-      ),
+          INSERT INTO revenue (month, revenue)
+          VALUES (${rev.month}, ${rev.revenue})
+          ON CONFLICT (month) DO NOTHING;
+        `
+      )
     )
 
     console.log(`Seeded ${insertedRevenue.length} revenue`)

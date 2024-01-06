@@ -3,10 +3,14 @@ import styles from '@/app/ui/home.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
-import { lusitana } from './ui/fonts'
 
+import { lusitana } from './ui/fonts'
 import AcmeLogo from '@/app/ui/acme-logo'
 
+/* En Next con el app router el routing con el file system, funciona unicamente con
+carpetas, donde solamente se crear la ruta si dentro hay un archivo page.(js, jsx, ts, tsx).
+Y este archivo debe exportar un componente por defecto que sera el que renderizara la
+pagina. */
 export default function Page() {
   return (
     <main className='flex flex-col min-h-screen p-6'>
@@ -46,6 +50,10 @@ export default function Page() {
         </div>
         
         <div className='flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12'>
+          {/* El componente Image de Next lo que hace es que nos realiza optimizaciones
+          de las imagenes por nosotros, usando el formato de imagen mas apropiado
+          dependiendo del navegador. Así mismo, este componente solamente carga
+          la imagen cuando esta debe mostrarse en el ViewPort, sino no la carga. */}
           <Image
             src='/hero-desktop.png'
             width={1000}

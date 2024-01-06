@@ -9,10 +9,13 @@ import { lusitana } from '@/app/ui/fonts'
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons'
 import { fetchInvoicesPages } from '@/app/lib/data'
 
+/* Este titulo se renderizara en el template del title del main layout. */
 export const metadata: Metadata = {
   title: 'Invoices',
 }
 
+/* Las paginas en Next reciben como parámetro muchos datos, entre ellos los searchParams
+de las rutas. */
 export default async function Page({
   searchParams
 } : {
@@ -24,6 +27,8 @@ export default async function Page({
   const query = searchParams?.query || ''
   const currentPage = Number(searchParams?.page) || 1
 
+  /* Como este es un react server podemos usar async y await para hacer fetch de datos 
+  porque esto se renderiza solo en el servidor. */
   const totalPages = await fetchInvoicesPages(query)
 
   return (
@@ -37,6 +42,7 @@ export default async function Page({
         <CreateInvoice />
       </div>
 
+      {/* Hacemos streaming de datos para el componente Table. */}
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
