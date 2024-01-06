@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import { authConfig } from './auth.config'
  
+/* Definimos la configuración de NextAuth en nuestro middleware. */
 export default NextAuth(authConfig).auth
  
 export const config = {

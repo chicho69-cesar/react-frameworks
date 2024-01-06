@@ -1,3 +1,5 @@
+/* Cuando usamos este string al inicio de un archivo le decimos a Next que todas las 
+funciones exportadas en este serán 'server actions' */
 'use server'
 
 import { sql } from '@vercel/postgres'
@@ -8,6 +10,7 @@ import { AuthError } from 'next-auth'
 
 import { signIn } from '@/auth'
 
+/* Creamos nuestro objeto de validación de esquemas de zod. */
 const FormSchema = z.object({
   id: z.string(),
   customerId: z.string({
@@ -34,6 +37,9 @@ export type State = {
   message?: string | null
 }
 
+/* Creamos nuestra server action la cual recibe el estado anterior de los datos
+que esta misma server action regresa al ejecutarse, también recibe el form data
+que se manda al hacer el submit de la action. */
 export async function createInvoice(prevState: State, formData: FormData) {
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get('customerId'),
@@ -65,7 +71,10 @@ export async function createInvoice(prevState: State, formData: FormData) {
     }
   }
 
+  /* Hacemos un revalidate de la ruta '/dashboard/invoices' para que se actualice
+  la pagina con la nueva información. */
   revalidatePath('/dashboard/invoices')
+  /* Hacemos un redirect a la ruta '/dashboard/invoices' para ver la nueva información. */
   redirect('/dashboard/invoices')
 }
 

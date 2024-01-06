@@ -14,10 +14,17 @@ import { Button } from '@/app/ui/button'
 import { createInvoice } from '@/app/lib/actions'
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  /* Creamos el estado inicial para el prevState que le pasaremos a la action. */
   const initialState = { message: null, errors: {} }
+  /* Hacemos uso del hook de react-dom useFormState para como su nombre lo indica
+  hacer un catch del estado de un formulario al ejecutar una server action.
+  Este hook nos regresa el estado que regresamos en la acción y un dispatch para 
+  poder ejecutar la acción. */
   const [state, dispatch] = useFormState(createInvoice, initialState)
 
   return (
+    /* Ejecutamos nuestra server action usando el dispatch brindado por el hook
+    useFormState. */
     <form action={dispatch}>
       <div className='p-4 rounded-md bg-gray-50 md:p-6'>
         {/* Customer Name */}
@@ -48,6 +55,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             <UserCircleIcon className='pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500' />
           </div>
 
+          {/* Renderizamos los mensajes que nos regresa nuestra acción. */}
           <div id='customer-error' aria-live='polite' aria-atomic='true'>
             {state.errors?.customerId &&
               state.errors.customerId.map((error: string) => (
@@ -80,6 +88,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             </div>
           </div>
 
+          {/* Renderizamos los mensajes que nos regresa nuestra acción. */}
           <div id='amount-error' aria-live='polite' aria-atomic='true'>
             {state.errors?.amount &&
               state.errors.amount.map((error: string) => (
@@ -136,6 +145,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             </div>
           </div>
           
+          {/* Renderizamos los mensajes que nos regresa nuestra acción. */}
           <div id='status-error' aria-live='polite' aria-atomic='true'>
             {state.errors?.status &&
               state.errors.status.map((error: string) => (
@@ -146,6 +156,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           </div>
         </fieldset>
 
+        {/* Renderizamos los mensajes que nos regresa nuestra acción. */}
         {state.message && (
           <p className='mt-2 text-sm text-red-500'>
             {state.message}

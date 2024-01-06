@@ -7,8 +7,12 @@ import { useDebouncedCallback } from 'use-debounce'
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
+  /* Usamos el hook useRouter de next/navigation para poder hacer navegación en
+  client components, sin utilizar un Link, sino desde la ejecución de algún código. */
   const { replace } = useRouter()
   
+  /* Usamos el hook useDebounceCallback de use-debounce para hacer un debounce de 
+  la búsqueda. */
   const handleChange = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams)
     params.set('page', '1')

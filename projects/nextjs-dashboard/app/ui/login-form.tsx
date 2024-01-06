@@ -13,9 +13,11 @@ import { lusitana } from '@/app/ui/fonts'
 import { Button } from './button'
 
 export default function LoginForm() {
+  /* Creamos nuestra server action. */
   const [errorMessage, dispatch] = useFormState(authenticate, undefined)
   
   return (
+    /* Usamos nuestra server action. */
     <form className='space-y-3' action={dispatch}>
       <div className='flex-1 px-6 pt-8 pb-4 rounded-lg bg-gray-50'>
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
@@ -89,6 +91,9 @@ export default function LoginForm() {
 }
 
 function LoginButton() {
+  /* Usamos useFormStatus para obtener el estado de la petición durante la ejecución de la
+  server action. Podemos recuperar la propia acción, la data, el método y si el estado
+  de la ejecución es pending. */
   const { pending } = useFormStatus()
 
   return (

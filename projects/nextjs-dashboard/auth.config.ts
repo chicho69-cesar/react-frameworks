@@ -1,9 +1,13 @@
 import type { NextAuthConfig } from 'next-auth'
 
+/* Exportamos el objeto de configuración para next auth. */
 export const authConfig = {
+  /* Definimos la ruta de signIn */
   pages: {
     signIn: '/login',
   },
+  /* Definimos los callbacks de autorización. En este caso para determinar si el
+  usuario esta logueado o no. */
   callbacks: {
     authorized({ auth, request: { nextUrl }}) {
       const isLoggedIn = !!auth?.user
@@ -19,5 +23,6 @@ export const authConfig = {
       return true
     }
   },
+  /* Definimos los proveedores de autenticación. */
   providers: []
 } satisfies NextAuthConfig

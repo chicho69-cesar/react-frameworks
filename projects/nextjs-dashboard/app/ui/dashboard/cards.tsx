@@ -16,6 +16,8 @@ const iconMap = {
 }
 
 export default async function CardWrapper() {
+  /* Al ser este un 'react server component', podemos hacer este un componente asíncrono
+  y poder hacer fetching de datos dentro de el. */
   const {
     numberOfInvoices,
     numberOfCustomers,

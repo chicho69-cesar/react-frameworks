@@ -26,9 +26,12 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
+  /* Hacemos un bind de nuestra action deleteInvoice para pasarle el id
+  de la factura que queremos borrar. */
   const deleteInvoiceWithId = deleteInvoice.bind(null, id)
 
   return (
+    /* Usamos la action ya con el id pasado */
     <form action={deleteInvoiceWithId}>
       <button className='p-2 border rounded-md hover:bg-gray-100'>
         <span className='sr-only'>Delete</span>

@@ -1,3 +1,10 @@
+/* Cuando usamos la directiva use client le decimos a Next que esto sera un 'react client
+component', es decir, un componente que se renderizara en el cliente. Esto porque
+no se pueden usar hooks en el server, solamente en el client, asi que si queremos usar
+los hooks debemos de decirle a Next que esto es un client component.
+Los client components ademas se recomienda que sean los mas abajo en el árbol de componentes
+posible, esto con el fin de evitar que se renderizen demasiados componentes el cliente
+que podrían renderizarse en el servidor. */
 'use client'
 
 import Link from 'next/link'
@@ -22,12 +29,16 @@ const links = [
 ]
 
 export default function NavLinks() {
+  /* Usamos el hook usePathname para obtener el pathname actual de la ruta. */
   const pathname = usePathname()
 
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon
+
+        /* Para hacer navegación en el cliente como si fuera una SPA debemos usar el
+        componente Link de Next.js. */
         return (
           <Link
             key={link.name}

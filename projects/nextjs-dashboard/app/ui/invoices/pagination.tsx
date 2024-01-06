@@ -9,7 +9,10 @@ import { generatePagination } from '@/app/lib/utils'
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   // NOTE: comment in this code when you get to this point in the course
+
+  /* Usamos usePathname para obtener el pathname de la ruta. */
   const pathname = usePathname()
+  /* Usamos useSearchParams para obtener los parámetros de búsqueda de la ruta. */
   const searchParams = useSearchParams()
   const currentPage = Number(searchParams.get('page')) || 1
 

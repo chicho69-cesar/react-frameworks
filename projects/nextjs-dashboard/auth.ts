@@ -24,10 +24,13 @@ async function getUser(email: string): Promise<User | undefined> {
   }
 }
 
+/* Exportamos las funciones de auth, signIn y signOut de NextAuth. */
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
+      /* Creamos nuestra función de autorización que se ejecutara cuando queramos
+      autorizar a un usuario, es decir, iniciar sesión con el. */
       async authorize(credentials) {
         const parsedCredentials = z
           .object({

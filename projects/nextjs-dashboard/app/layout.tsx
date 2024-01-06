@@ -28,6 +28,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang='es'>
+      {/* Usamos la clases de la fuente inter, para aplicar la fuente a 
+      todo el body de la aplicación. */}
       <body className={`${inter.className} antialiased`}>
         {children}
       </body>

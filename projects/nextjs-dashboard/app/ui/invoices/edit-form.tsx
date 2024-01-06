@@ -20,11 +20,15 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm
   customers: CustomerField[]
 }) {
+  /* Creamos el estado inicial para la server action. */
   const initialState = { message: null, errors: {} }
+  /* Hacemos bind para pasarle los parámetros que necesita la acción. */
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id)
+  /* Usamos el hook useFormState para manejar el estado de la acción. */
   const [state, dispatch] = useFormState(updateInvoiceWithId, initialState)
 
   return (
+    /* Hacemos el llamado de la server action con el dispatch. */
     <form action={dispatch}>
       <div className='p-4 rounded-md bg-gray-50 md:p-6'>
         {/* Customer Name */}
